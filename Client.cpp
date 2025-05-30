@@ -1,11 +1,9 @@
 #include "Client.h"
-
+int Client::nextId = 1;
 // Construtores
 Client::Client()
 {
 }
-
-int Client::nextId = 1;
 
 Client::Client(int id, string name, int phone, string address)
 {

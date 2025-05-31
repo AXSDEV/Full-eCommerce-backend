@@ -10,7 +10,7 @@ Project for a small-business in C++. School project.
 3.Menu Principal;
 4.Sub Menus;
 5.Class Vendas e tudo o que Abrange;
-
+6.Class Loja e tudo o que Abrange;
 
 🛠 Extra Tasks
 1.Search Bar;

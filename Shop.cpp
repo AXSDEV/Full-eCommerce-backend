@@ -4,6 +4,4 @@ Shop::Shop()
 {
 }
 
-Shop::Shop()
-{
-}
+// Shop::Shop()

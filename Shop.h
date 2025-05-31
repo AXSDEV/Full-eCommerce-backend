@@ -10,7 +10,7 @@ class Shop
 {
 public:
     Shop();
-    Shop();
+    //   Shop();
 
 private:
 };

@@ -1,11 +1,8 @@
 #include "Client.h"
 int Client::nextId = 1;
 // Construtores
-Client::Client()
-{
-}
 
-Client::Client(int id, string name, int phone, string address)
+Client::Client(string name, string phone, string address)
 {
     this->id = nextId++;
     this->name = name;
@@ -21,7 +18,7 @@ string Client::getName()
 {
     return name;
 }
-int Client::getPhone()
+string Client::getPhone()
 {
     return phone;
 }
@@ -30,15 +27,15 @@ string Client::getAddress()
     return address;
 }
 // Sets
-void Client::setName()
+void Client::setName(string name)
 {
     this->name = name;
 }
-void Client::setPhone()
+void Client::setPhone(string phone)
 {
     this->phone = phone;
 }
-void Client::setAddress()
+void Client::setAddress(string address)
 {
     this->address = address;
 }
@@ -46,5 +43,5 @@ void Client::setAddress()
 // toString
 string Client::toString()
 {
-    return "ID: \n" + to_string(id) + "Name: \n" + name + "Phone: \n" + to_string(phone) + "Address: \n" + address;
+    return "ID: " + to_string(id) + "\nName: " + name + "\nPhone: " + phone + "\nAddress: " + address;
 }

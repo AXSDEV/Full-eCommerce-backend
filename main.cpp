@@ -85,6 +85,7 @@ int main()
         }
     } while (option != 7); // Repete o menu até sair do programa
 */
+
     // Preenchimento do Objeto
     Stock products;
     products.saveProduct(1, "Lapis", 20, 0.20);

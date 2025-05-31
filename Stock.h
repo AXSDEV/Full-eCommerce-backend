@@ -5,7 +5,7 @@
 class Stock
 {
     Product products[100];
-    int tamanhoStock = 0;
+    int sizeStock = 0;
 
 public:
     void saveProduct(int id, string name, int quantity, double priceWoiva);

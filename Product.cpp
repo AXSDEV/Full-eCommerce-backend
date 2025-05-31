@@ -1,10 +1,11 @@
 #include "Product.h"
+#include <sstream>
 
 // Construtores
 Product::Product()
 {
 }
-int Product::nextIdProduct = 0;
+int Product::nextIdProduct = 1;
 Product::Product(int id, string name, int quantity, double priceWoiva)
 {
     this->id = nextIdProduct++;
@@ -47,5 +48,11 @@ void Product::setPriceWoiva()
 // tostring ou Impressao
 string Product::tostring()
 {
-    return "ID: \n" + to_string(id) + "Name: \n" + name + "Quantity: \n" + to_string(quantity) + "Price WO/I: \n" + to_string(priceWoiva);
+    std::stringstream ss;
+    ss << "ID: " << id
+       << "\nName: " << name
+       << "\nQuantity: " << quantity
+       << "\nPrice WO/I: " << fixed << setprecision(2) << priceWoiva
+       << endl;
+    return ss.str();
 }

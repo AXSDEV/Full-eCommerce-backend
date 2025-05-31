@@ -2,11 +2,11 @@
 
 void Stock::saveProduct(int id, string name, int quantity, double priceWoiva)
 {
-    if (tamanhoStock < 100)
+    if (sizeStock < 100)
     {
         Product product(id, name, quantity, priceWoiva);
-        products[tamanhoStock] = product;
-        tamanhoStock++;
+        products[sizeStock] = product;
+        sizeStock++;
     }
     else
     {
@@ -16,7 +16,7 @@ void Stock::saveProduct(int id, string name, int quantity, double priceWoiva)
 
 int Stock::searchProduct(string name)
 {
-    for (int i = 0; i < tamanhoStock; i++)
+    for (int i = 0; i < sizeStock; i++)
     {
         if (name == products[i].getName())
         {
@@ -27,9 +27,31 @@ int Stock::searchProduct(string name)
 }
 void Stock::printStock()
 {
-    for (int i = 0; i < tamanhoStock; i++)
+    for (int i = 0; i < sizeStock; i++)
     {
         cout << endl
              << products[i].tostring();
     }
+}
+void Stock::printProduct(int i)
+{
+    if (i > 0 && i < sizeStock)
+    {
+        cout << endl
+             << products[i].tostring();
+    }
+    else
+    {
+        cout << endl
+             << "Nao existe esse Produto";
+    }
+}
+void Stock::removeProduct(string name)
+{
+    int position = searchProduct(name);
+    for (int i = position; i < sizeStock; i++)
+    {
+        products[i] = products[i + 1];
+    }
+    sizeStock--;
 }

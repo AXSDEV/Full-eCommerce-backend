@@ -18,13 +18,11 @@ void mainMenu()
              << " |==============|\n"
              << RESET;
         cout << endl;
-        cout << "[1] Produtos Disponiveis\n";
-        cout << "[2] Carrinho\n";
-        cout << "[3] Checkout\n";
-        cout << "[4] Adicionar Produto\n";
-        cout << "[5] Eliminar Produto\n";
-        cout << "[6] Clientes Disponiveis\n";
-        cout << "[7] Sair\n";
+        cout << "[1] Stock\n";
+        cout << "[2] Vendas\n";
+        cout << "[3] Clientes\n";
+        cout << "[4] Relatorios\n";
+        cout << "[5] Sair\n";
         cout << "Escolha uma opcao: ";
         if (!(cin >> option))
         {

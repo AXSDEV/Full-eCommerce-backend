@@ -3,11 +3,12 @@
 #include "Client.h"
 #include "Shop.h"
 
-int main()
+void mainMenu();
+void stockMenu();
+
+void mainMenu()
 {
     int option;
-    Shop products; // Para puder chamar metodos para tratar o objeto products
-
     do
     {
         system("CLS"); // Limpa a tela
@@ -25,7 +26,6 @@ int main()
         cout << "[6] Clientes Disponiveis\n";
         cout << "[7] Sair\n";
         cout << "Escolha uma opcao: ";
-
         if (!(cin >> option))
         {
             cin.clear();
@@ -35,39 +35,19 @@ int main()
         switch (option)
         {
         case 1:
-            // Mostrar produtos disponíveis
             system("CLS"); // Limpa a tela
-            products.printStock();
+            stockMenu();
             break;
         case 2:
-            // Comprar produto
             system("CLS"); // Limpa a tela
-            // adicionar metodo
             break;
         case 3:
-            // Carrinho
             system("CLS"); // Limpa a tela
-                           // adicionar metodo
             break;
         case 4:
-        {
-            // Adicionar produto
             system("CLS"); // Limpa a tela
-            products.addProductstock();
             break;
-        }
         case 5:
-            // Eliminar produto
-            system("CLS"); // Limpa a tela
-            // adicionar metodo
-            products.removeProductstock();
-            break;
-        case 6:
-            // Imprime a lista de clientes
-            system("CLS"); // Limpa a tela
-            products.printClientList();
-            break;
-        case 7:
             cout << RED << endl
                  << "A desligar o programa...\n"
                  << RESET;
@@ -78,12 +58,55 @@ int main()
                  << "Opcao invalida. Tente novamente.\n";
             break;
         }
-        if (option != 7)
+    } while (option != 7); // Repete o menu até sair do programa
+}
+
+void stockMenu()
+{
+    Shop products;
+    products.printStock();
+    cout << endl;
+    int option;
+    do
+    {
+        system("CLS"); // Limpa a tela
+        cout << "[1] Adicionar Produto\n";
+        cout << "[2] Remover Produto\n";
+        cout << "[3] Modificar Preco\n";
+        cout << "[4] Voltar ao Menu\n";
+        cout << "Escolha uma opcao: ";
+        if (!(cin >> option))
         {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Apenas pode inserir numeros. Por favor tente novamente.\n";
+        }
+        switch (option)
+        {
+        case 1:
+            system("CLS"); // Limpa a tela
+            products.addProductstock();
+            break;
+        case 2:
+            system("CLS"); // Limpa a tela
+            products.removeProductstock();
+            break;
+        case 3:
+            system("CLS"); // Limpa a tela
+            // adicionar metodo
+            break;
+        case 4:
+            system("CLS"); // Limpa a tela
+            break;
+        default:
+            // Opcao invalida
             cout << endl
-                 << "Pressione Enter para voltar ao menu.";
-            cin.ignore();
-            cin.get(); // Espera o utilizador pressionar Enter
+                 << "Opcao invalida. Tente novamente.\n";
+            break;
         }
     } while (option != 7); // Repete o menu até sair do programa
+}
+int main()
+{
+    mainMenu();
 }

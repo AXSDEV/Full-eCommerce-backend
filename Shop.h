@@ -1,6 +1,7 @@
 #ifndef SHOP_H
 #define SHOP_H
 #include "Product.h"
+#include "Client.h"
 
 #define RESET "\033[0m"          // Define a cor de texto para padrão
 #define RED "\033[31m"           // Define a cor de texto para vermelho
@@ -10,7 +11,9 @@
 class Shop
 {
     Product products[100];
+    Client list[100];
     int sizeStock = 0;
+    int sizeClientList = 0;
 
 public:
     Shop();
@@ -21,6 +24,15 @@ public:
     void removeProduct(string name);
     void addProductstock();
     void removeProductstock();
+
+    void addProductstock();
+    void removeProductstock();
+
+    // Clients
+    void saveClient(int id, string name, string phone, string address);
+    int searchClient(string name);
+    void printClientList();
+    void removeClient(string name);
 
 private:
 };

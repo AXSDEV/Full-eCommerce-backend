@@ -2,7 +2,7 @@
 int Client::nextId = 1;
 // Construtores
 
-Client::Client(string name, string phone, string address)
+Client::Client(int id, string name, string phone, string address)
 {
     this->id = nextId++;
     this->name = name;

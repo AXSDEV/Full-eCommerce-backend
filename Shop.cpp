@@ -66,9 +66,9 @@ int Shop::searchProduct(string name)
 void Shop::printStock()
 {
     cout << left << setw(5) << "ID"
-         << setw(20) << "Nome"
+         << setw(20) << "Name"
          << setw(10) << "Qnt"
-         << setw(10) << "Preco" << endl;
+         << setw(10) << "Price" << endl;
     for (int i = 0; i < sizeStock; i++)
     {
         cout << endl
@@ -111,3 +111,46 @@ void Shop::removeProductstock()
 }
 
 // Shop::Shop()
+void Shop::saveClient(int id, string name, string phone, string address)
+{
+    if (sizeClientList < 100)
+    {
+        Client client(id, name, phone, address);
+        list[sizeClientList] = client;
+        sizeClientList++;
+    }
+}
+int Shop::searchClient(string name)
+{
+    for (int i = 0; i < sizeClientList; i++)
+    {
+        if (name == list[i].getName())
+        {
+            return i;
+        }
+        return -1;
+    }
+}
+
+void Shop::printClientList()
+{
+    cout << left << setw(5) << "ID"
+         << setw(20) << "Name"
+         << setw(10) << "Phone"
+         << setw(10) << "Address" << endl;
+    for (int i = 0; i < sizeClientList; i++)
+    {
+        cout << endl
+             << list[i].toString();
+    }
+}
+
+void Shop::removeClient(string name)
+{
+    int pos = searchClient(name); // pos = position
+    for (int i = pos; i < sizeClientList; i++)
+    {
+        list[i] = list[i + 1];
+    }
+    sizeClientList--;
+}

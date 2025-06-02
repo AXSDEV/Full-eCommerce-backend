@@ -52,7 +52,17 @@ int main()
         case 4:
             // Adicionar produto
             system("CLS"); // Limpa a tela
+            int id;
+            string name;
+            int quantity;
+            double priceWoiva;
+            cout << "Nome do Produto que quer adicionar: ";
+            cin >> name;
+            cout << "Quantidade do Produto que quer adicionar: ";
+            cin >> quantity;
+
             // adicionar metodo
+
             break;
         case 5:
             // Eliminar produto

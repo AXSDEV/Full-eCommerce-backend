@@ -43,5 +43,10 @@ void Client::setAddress(string address)
 // toString
 string Client::toString()
 {
-    return "ID: " + to_string(id) + "\nName: " + name + "\nPhone: " + phone + "\nAddress: " + address;
+    stringstream oss;
+    oss << left << setw(5) << id
+        << setw(20) << name
+        << setw(10) << phone
+        << setw(10) << address;
+    return oss.str();
 }

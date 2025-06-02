@@ -3,25 +3,48 @@
 #include "Client.h"
 Shop::Shop()
 {
-    saveProduct(1, "Lapis", 20, 0.20);
-    saveProduct(2, "Caneta", 20, 0.40);
-    saveProduct(3, "Caderno", 20, 1.50);
-    saveProduct(4, "Borracha", 15, 0.30);
-    saveProduct(5, "Apontador", 10, 0.50);
-    saveProduct(6, "Regua", 12, 0.80);
-    saveProduct(7, "Marcador", 18, 1.20);
-    saveProduct(8, "Bloco Notas", 8, 2.00);
-    saveProduct(9, "Estojo", 5, 3.50);
-    saveProduct(10, "Mochila", 3, 12.00);
+    saveProduct("Lapis", 20, 0.20);
+    saveProduct("Caneta", 20, 0.40);
+    saveProduct("Caderno", 20, 1.50);
+    saveProduct("Borracha", 15, 0.30);
+    saveProduct("Apontador", 10, 0.50);
+    saveProduct("Regua", 12, 0.80);
+    saveProduct("Marcador", 18, 1.20);
+    saveProduct("Bloco Notas", 8, 2.00);
+    saveProduct("Estojo", 5, 3.50);
+    saveProduct("Mochila", 3, 12.00);
 }
 
-void Shop::saveProduct(int id, string name, int quantity, double priceWoiva)
+void Shop::saveProduct(string name, int quantity, double priceWoiva)
 {
     if (sizeStock < 100)
     {
-        Product product(id, name, quantity, priceWoiva);
+        Product product(name, quantity, priceWoiva);
         products[sizeStock] = product;
         sizeStock++;
+    }
+    else
+    {
+        cout << "Stock encontrasse cheio ! " << endl;
+    }
+}
+
+void Shop::addProductstock()
+{
+    if (sizeStock < 100)
+    {
+        string nameProduct;
+        int quantityProduct;
+        double priceProduct;
+        cout << "Nome: ";
+        cin.ignore();
+        getline(cin, nameProduct); // Maneira de conseguir ler tudo ate ao enter inves de ate ao espaco
+        cout << "Quantidade: ";
+        cin >> quantityProduct;
+        cout << "Preco: ";
+        cin >> priceProduct;
+
+        saveProduct(nameProduct, quantityProduct, priceProduct);
     }
     else
     {
@@ -73,6 +96,18 @@ void Shop::removeProduct(string name)
         products[i] = products[i + 1];
     }
     sizeStock--;
+}
+void Shop::removeProductstock()
+{
+    string nameRemoveprod;
+    printStock();
+    cout << endl
+         << endl;
+
+    cout << "Nome do Artigo a Apagar: ";
+    cin.ignore();
+    getline(cin, nameRemoveprod);
+    removeProduct(nameRemoveprod);
 }
 
 // Shop::Shop()

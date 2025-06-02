@@ -4,8 +4,8 @@
 Product::Product()
 {
 }
-int Product::nextIdProduct = 1;
-Product::Product(int id, string name, int quantity, double priceWoiva)
+int Product::nextIdProduct = 0;
+Product::Product(string name, int quantity, double priceWoiva)
 {
     this->id = nextIdProduct++;
     this->name = name;

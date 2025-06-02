@@ -14,11 +14,13 @@ class Shop
 
 public:
     Shop();
-    void saveProduct(int id, string name, int quantity, double priceWoiva);
+    void saveProduct(string name, int quantity, double priceWoiva);
     int searchProduct(string name);
     void printStock();
     void printProduct(int i);
     void removeProduct(string name);
+    void addProductstock();
+    void removeProductstock();
 
 private:
 };

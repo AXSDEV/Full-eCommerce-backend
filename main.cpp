@@ -46,7 +46,7 @@ int main()
             // adicionar metodo
             break;
         case 3:
-            // carrinho
+            // Carrinho
             system("CLS"); // Limpa a tela
                            // adicionar metodo
             break;
@@ -87,7 +87,7 @@ int main()
 */
 
     // Preenchimento do Objeto
-    Stock products;
+    Shop products;
     products.saveProduct(1, "Lapis", 20, 0.20);
     products.saveProduct(2, "Caneta", 20, 0.40);
     products.saveProduct(3, "Caderno", 20, 1.50);

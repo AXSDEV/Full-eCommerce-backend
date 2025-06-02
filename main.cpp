@@ -1,6 +1,5 @@
 #include "Client.h"
 #include "Product.h"
-#include "Stock.h"
 #include "Client.h"
 #include "Shop.h"
 

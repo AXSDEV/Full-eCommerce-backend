@@ -2,7 +2,7 @@
 #include "Product.h"
 #include "Client.h"
 #include "Shop.h"
-
+Shop products;
 void mainMenu();
 void stockMenu();
 
@@ -61,7 +61,6 @@ void mainMenu()
 
 void stockMenu()
 {
-    Shop products;
     int option;
     do
     {
@@ -104,6 +103,7 @@ void stockMenu()
         }
     } while (option != 4); // Repete o menu até sair do programa
 }
+
 int main()
 {
     mainMenu();

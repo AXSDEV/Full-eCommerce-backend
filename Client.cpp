@@ -4,7 +4,7 @@
 Client::Client()
 {
 }
-int Client::nextId = 0;
+int Client::nextId = 1;
 Client::Client(string name, string phone, string address)
 {
     this->id = nextId++;

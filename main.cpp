@@ -22,7 +22,7 @@ int main()
         cout << "[3] Checkout\n";
         cout << "[4] Adicionar Produto\n";
         cout << "[5] Eliminar Produto\n";
-        cout << "[6] Modificar Preco\n";
+        cout << "[6] Clientes Disponiveis\n";
         cout << "[7] Sair\n";
         cout << "Escolha uma opcao: ";
 
@@ -63,9 +63,9 @@ int main()
             products.removeProductstock();
             break;
         case 6:
-            // Modificar preço do produto
+            // Imprime a lista de clientes
             system("CLS"); // Limpa a tela
-            // adicionar metodo
+            products.printClientList();
             break;
         case 7:
             cout << RED << endl

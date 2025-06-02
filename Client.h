@@ -21,7 +21,7 @@ private:
 public:
     // Construtores
     Client();
-    Client(int id, string name, string phone, string address);
+    Client(string name, string phone, string address);
 
     // Gets
     int getId();

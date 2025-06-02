@@ -3,6 +3,7 @@
 #include "Client.h"
 Shop::Shop()
 {
+    // Stock
     saveProduct("Lapis", 20, 0.20);
     saveProduct("Caneta", 20, 0.40);
     saveProduct("Caderno", 20, 1.50);
@@ -13,6 +14,13 @@ Shop::Shop()
     saveProduct("Bloco Notas", 8, 2.00);
     saveProduct("Estojo", 5, 3.50);
     saveProduct("Mochila", 3, 12.00);
+
+    // Lista de Clientes
+    saveClient("Carlos", "911223344", "Rua do Sol, 77");
+    saveClient("Sofia", "932109876", "Largo da Igreja, 5");
+    saveClient("Diogo", "967890123", "Avenida dos Descobrimentos, 10");
+    saveClient("Rita", "919876543", "Praça da República, 1");
+    saveClient("Tiago", "934567890", "Rua das Flores, 42");
 }
 
 void Shop::saveProduct(string name, int quantity, double priceWoiva)
@@ -111,11 +119,11 @@ void Shop::removeProductstock()
 }
 
 // Shop::Shop()
-void Shop::saveClient(int id, string name, string phone, string address)
+void Shop::saveClient(string name, string phone, string address)
 {
     if (sizeClientList < 100)
     {
-        Client client(id, name, phone, address);
+        Client client(name, phone, address);
         list[sizeClientList] = client;
         sizeClientList++;
     }
@@ -128,8 +136,8 @@ int Shop::searchClient(string name)
         {
             return i;
         }
-        return -1;
     }
+    return -1;
 }
 
 void Shop::printClientList()

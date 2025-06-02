@@ -110,7 +110,7 @@ void Shop::removeProductstock()
     removeProduct(nameRemoveprod);
 }
 
-// Shop::Shop()
+// Shop::Client
 void Shop::saveClient(int id, string name, string phone, string address)
 {
     if (sizeClientList < 100)
@@ -128,8 +128,8 @@ int Shop::searchClient(string name)
         {
             return i;
         }
-        return -1;
     }
+    return -1;
 }
 
 void Shop::printClientList()

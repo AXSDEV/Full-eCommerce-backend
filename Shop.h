@@ -25,9 +25,6 @@ public:
     void addProductstock();
     void removeProductstock();
 
-    void addProductstock();
-    void removeProductstock();
-
     // Clients
     void saveClient(int id, string name, string phone, string address);
     int searchClient(string name);

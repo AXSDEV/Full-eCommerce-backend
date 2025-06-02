@@ -9,9 +9,9 @@ Shop::Shop()
     saveProduct(4, "Borracha", 15, 0.30);
     saveProduct(5, "Apontador", 10, 0.50);
     saveProduct(6, "Regua", 12, 0.80);
-    saveProduct(7, "Marcador", 18, 120);
-    saveProduct(8, "Bloco Notas", 8, 200);
-    saveProduct(9, "Estojo", 5, 350);
+    saveProduct(7, "Marcador", 18, 1.20);
+    saveProduct(8, "Bloco Notas", 8, 2.00);
+    saveProduct(9, "Estojo", 5, 3.50);
     saveProduct(10, "Mochila", 3, 12.00);
 }
 

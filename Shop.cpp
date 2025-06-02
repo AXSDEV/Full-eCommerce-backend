@@ -137,7 +137,7 @@ int Shop::searchClient(string name)
             return i;
         }
     }
-    return -1;
+
     return -1;
 }
 

@@ -2,7 +2,7 @@
 #include "Product.h"
 #include "Client.h"
 #include "Shop.h"
-
+Shop products;
 void mainMenu();
 void stockMenu();
 
@@ -61,13 +61,13 @@ void mainMenu()
 
 void stockMenu()
 {
-    Shop products;
-    products.printStock();
-    cout << endl;
     int option;
     do
     {
         system("CLS"); // Limpa a tela
+        products.printStock();
+        cout << endl
+             << endl;
         cout << "[1] Adicionar Produto\n";
         cout << "[2] Remover Produto\n";
         cout << "[3] Modificar Preco\n";
@@ -102,8 +102,9 @@ void stockMenu()
                  << "Opcao invalida. Tente novamente.\n";
             break;
         }
-    } while (option != 7); // Repete o menu até sair do programa
+    } while (option != 4); // Repete o menu até sair do programa
 }
+
 int main()
 {
     mainMenu();

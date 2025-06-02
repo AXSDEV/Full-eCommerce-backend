@@ -1,6 +1,19 @@
 #include "Shop.h"
 #include "Product.h"
 #include "Client.h"
+Shop::Shop()
+{
+    saveProduct(1, "Lapis", 20, 0.20);
+    saveProduct(2, "Caneta", 20, 0.40);
+    saveProduct(3, "Caderno", 20, 1.50);
+    saveProduct(4, "Borracha", 15, 0.30);
+    saveProduct(5, "Apontador", 10, 0.50);
+    saveProduct(6, "Regua", 12, 0.80);
+    saveProduct(7, "Marcador", 18, 120);
+    saveProduct(8, "Bloco Notas", 8, 200);
+    saveProduct(9, "Estojo", 5, 350);
+    saveProduct(10, "Mochila", 3, 12.00);
+}
 
 void Shop::saveProduct(int id, string name, int quantity, double priceWoiva)
 {

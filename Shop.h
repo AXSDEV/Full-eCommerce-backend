@@ -13,6 +13,7 @@ class Shop
     int sizeStock = 0;
 
 public:
+    Shop();
     void saveProduct(int id, string name, int quantity, double priceWoiva);
     int searchProduct(string name);
     void printStock();

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <sstream>
 
 using namespace std;
 class Product
@@ -19,7 +20,7 @@ private:
 public:
     // Construtores
     Product();
-    Product(int id, string name, int quantity, double priceWoiva);
+    Product(string name, int quantity, double priceWoiva);
     // Gets
     int getId();
     string getName();

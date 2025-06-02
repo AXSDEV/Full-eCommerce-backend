@@ -53,23 +53,14 @@ int main()
         {
             // Adicionar produto
             system("CLS"); // Limpa a tela
-            int id;
-            string name;
-            int quantity;
-            double priceWoiva;
-            cout << "Nome do Produto que quer adicionar: ";
-            cin >> name;
-            cout << "Quantidade do Produto que quer adicionar: ";
-            cin >> quantity;
-
-            // adicionar metodo
-
+            products.addProductstock();
             break;
         }
         case 5:
             // Eliminar produto
             system("CLS"); // Limpa a tela
             // adicionar metodo
+            products.removeProductstock();
             break;
         case 6:
             // Modificar preço do produto

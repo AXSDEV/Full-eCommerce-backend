@@ -5,8 +5,8 @@
 
 int main()
 {
-    Shop shop;
-    shop.printStock();
+    Shop products;
+    products.printStock();
     // int option;
     // do
     // {

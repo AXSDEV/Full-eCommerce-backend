@@ -138,7 +138,6 @@ int Shop::searchClient(string name)
         }
     }
     return -1;
-    return -1;
 }
 
 void Shop::printClientList()

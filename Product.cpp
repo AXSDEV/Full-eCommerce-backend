@@ -1,5 +1,4 @@
 #include "Product.h"
-#include <sstream>
 
 // Construtores
 Product::Product()

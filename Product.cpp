@@ -49,10 +49,9 @@ void Product::setPriceWoiva()
 string Product::tostring()
 {
     std::stringstream ss;
-    ss << "ID: " << id
-       << "\nName: " << name
-       << "\nQuantity: " << quantity
-       << "\nPrice WO/I: " << fixed << setprecision(2) << priceWoiva
-       << endl;
+    ss << left << setw(5) << id
+       << setw(20) << name
+       << setw(10) << quantity
+       << setw(10) << fixed << setprecision(2) << priceWoiva;
     return ss.str();
 }

@@ -8,6 +8,7 @@ int main()
     Shop products;
     products.printStock();
     // int option;
+
     // do
     // {
     //     system("CLS"); // Limpa a tela

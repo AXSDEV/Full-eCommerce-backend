@@ -43,9 +43,9 @@ int Shop::searchProduct(string name)
 void Shop::printStock()
 {
     cout << left << setw(5) << "ID"
-         << setw(20) << "Name"
+         << setw(20) << "Nome"
          << setw(10) << "Qnt"
-         << setw(10) << "Price" << endl;
+         << setw(10) << "Preco" << endl;
     for (int i = 0; i < sizeStock; i++)
     {
         cout << endl
@@ -100,9 +100,9 @@ int Shop::searchClient(string name)
 void Shop::printClientList()
 {
     cout << left << setw(5) << "ID"
-         << setw(20) << "Name"
-         << setw(10) << "Phone"
-         << setw(10) << "Address" << endl;
+         << setw(20) << "Nome"
+         << setw(10) << "Telemovel"
+         << setw(10) << "Morada" << endl;
     for (int i = 0; i < sizeClientList; i++)
     {
         cout << endl

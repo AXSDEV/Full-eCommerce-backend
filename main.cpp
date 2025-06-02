@@ -50,6 +50,7 @@ int main()
                            // adicionar metodo
             break;
         case 4:
+        {
             // Adicionar produto
             system("CLS"); // Limpa a tela
             int id;
@@ -64,6 +65,7 @@ int main()
             // adicionar metodo
 
             break;
+        }
         case 5:
             // Eliminar produto
             system("CLS"); // Limpa a tela

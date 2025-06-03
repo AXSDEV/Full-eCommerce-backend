@@ -30,6 +30,8 @@ public:
     int searchClient(string name);
     void printClientList();
     void removeClient(string name);
+    void removeFromclientlist();
+    void addClient();
 
 private:
 };

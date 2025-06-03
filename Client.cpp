@@ -49,7 +49,7 @@ string Client::toString()
     stringstream oss;
     oss << left << setw(5) << id
         << setw(20) << name
-        << setw(10) << phone
-        << setw(10) << address;
+        << setw(30) << phone
+        << setw(30) << address;
     return oss.str();
 }

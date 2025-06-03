@@ -19,10 +19,11 @@ Shop::Shop()
     saveClient("Carlos", "911223344", "Rua do Sol, 77");
     saveClient("Sofia", "932109876", "Largo da Igreja, 5");
     saveClient("Diogo", "967890123", "Avenida dos Descobrimentos, 10");
-    saveClient("Rita", "919876543", "Praça da República, 1");
+    saveClient("Rita", "919876543", "Praca da Republica, 1");
     saveClient("Tiago", "934567890", "Rua das Flores, 42");
+    saveClient("Leandro", "999PorfavorNincomode", "Debaixo da Ponte, 42");
 }
-
+// Shop::Product
 void Shop::saveProduct(string name, int quantity, double priceWoiva)
 {
     if (sizeStock < 100)
@@ -128,6 +129,29 @@ void Shop::saveClient(string name, string phone, string address)
         sizeClientList++;
     }
 }
+void Shop::addClient()
+{
+    if (sizeStock < 100)
+    {
+        string nameClient;
+        string cellClient;
+        string addressClient;
+        cout << "Nome: ";
+        cin.ignore();
+        getline(cin, nameClient); // Maneira de conseguir ler tudo ate ao enter inves de ate ao espaco
+        cout << "CellPhoneNumber: ";
+        getline(cin, cellClient);
+        cout << "Address: ";
+        getline(cin, addressClient);
+
+        saveClient(nameClient, cellClient, addressClient);
+    }
+    else
+    {
+        cout << "Stock encontrasse cheio ! " << endl;
+    }
+}
+
 int Shop::searchClient(string name)
 {
     for (int i = 0; i < sizeClientList; i++)
@@ -145,8 +169,8 @@ void Shop::printClientList()
 {
     cout << left << setw(5) << "ID"
          << setw(20) << "Nome"
-         << setw(10) << "Telemovel"
-         << setw(10) << "Morada" << endl;
+         << setw(30) << "Telemovel"
+         << setw(30) << "Morada" << endl;
     for (int i = 0; i < sizeClientList; i++)
     {
         cout << endl
@@ -162,4 +186,16 @@ void Shop::removeClient(string name)
         list[i] = list[i + 1];
     }
     sizeClientList--;
+}
+void Shop::removeFromclientlist()
+{
+    string nameRemoveclient;
+    printClientList();
+    cout << endl
+         << endl;
+
+    cout << "Nome do Cliente a Apagar: ";
+    cin.ignore();
+    getline(cin, nameRemoveclient);
+    removeClient(nameRemoveclient);
 }

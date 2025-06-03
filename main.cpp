@@ -5,6 +5,7 @@
 Shop products;
 void mainMenu();
 void stockMenu();
+void MenuCliente();
 
 void mainMenu()
 {
@@ -41,6 +42,7 @@ void mainMenu()
             break;
         case 3:
             system("CLS"); // Limpa a tela
+            MenuCliente();
             break;
         case 4:
             system("CLS"); // Limpa a tela
@@ -88,6 +90,54 @@ void stockMenu()
         case 2:
             system("CLS"); // Limpa a tela
             products.removeProductstock();
+            break;
+        case 3:
+            system("CLS"); // Limpa a tela
+            // adicionar metodo
+            break;
+        case 4:
+            system("CLS"); // Limpa a tela
+            break;
+        default:
+            // Opcao invalida
+            cout << endl
+                 << "Opcao invalida. Tente novamente.\n";
+            break;
+        }
+    } while (option != 4); // Repete o menu até sair do programa
+}
+
+void MenuCliente()
+{
+    int option;
+    do
+    {
+        system("CLS"); // Limpa a tela
+        products.printClientList();
+        cout << endl
+             << endl;
+        cout << "[1] Adicionar Cliente\n";
+        cout << "[2] Remover Cliente\n";
+        cout << "[3] Modificar Telefone/Morada/Altura\n";
+        cout << "[4] Voltar ao Menu\n";
+        cout << "Escolha uma opcao: ";
+        if (!(cin >> option))
+        {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Apenas pode inserir numeros. Por favor tente novamente.\n";
+        }
+        switch (option)
+        {
+        case 1:
+            system("CLS"); // Limpa a tela
+            // adicionar metodo
+            products.addClient();
+            break;
+        case 2:
+            system("CLS"); // Limpa a tela
+            // adicionar metodo
+            products.removeFromclientlist();
             break;
         case 3:
             system("CLS"); // Limpa a tela

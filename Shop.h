@@ -17,21 +17,26 @@ class Shop
 
 public:
     Shop();
+    // Products
     void saveProduct(string name, int quantity, double priceWoiva);
-    int searchProduct(string name);
+    int searchProduct(int id);
     void printStock();
     void printProduct(int i);
-    void removeProduct(string name);
+    void removeProduct(int id);
     void addProductstock();
     void removeProductstock();
+    void setProductPrice();
+    void setProductQuantity();
 
     // Clients
     void saveClient(string name, string phone, string address);
-    int searchClient(string name);
+    int searchClient(int id);
     void printClientList();
-    void removeClient(string name);
+    void removeClient(int id);
     void removeFromclientlist();
     void addClient();
+    void setClientPhone();
+    void setClientAddress();
 
 private:
 };

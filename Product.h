@@ -28,8 +28,8 @@ public:
     double getPriceWoiva();
     // Sets
     void setName();
-    void setQuantity();
-    void setPriceWoiva();
+    void setQuantity(int quantity);
+    void setPriceWoiva(double price);
     // to string
     string tostring();
 };

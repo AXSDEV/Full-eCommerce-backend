@@ -35,13 +35,13 @@ void Product::setName()
 {
     this->name = name;
 }
-void Product::setQuantity()
+void Product::setQuantity(int quantity)
 {
     this->quantity = quantity;
 }
-void Product::setPriceWoiva()
+void Product::setPriceWoiva(double price)
 {
-    this->priceWoiva = priceWoiva;
+    this->priceWoiva = price;
 }
 
 // tostring ou Impressao

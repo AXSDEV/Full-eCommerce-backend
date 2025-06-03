@@ -5,7 +5,7 @@
 Shop products;
 void mainMenu();
 void stockMenu();
-void MenuCliente();
+void clientMenu();
 
 void mainMenu()
 {
@@ -19,11 +19,12 @@ void mainMenu()
              << " |==============|\n"
              << RESET;
         cout << endl;
-        cout << "[1] Stock\n";
-        cout << "[2] Vendas\n";
-        cout << "[3] Clientes\n";
-        cout << "[4] Relatorios\n";
-        cout << "[5] Sair\n";
+        cout << "[1] Comprar\n";
+        cout << "[2] Stock\n";
+        cout << "[3] Vendas\n";
+        cout << "[4] Clientes\n";
+        cout << "[5] Relatorios\n";
+        cout << "[6] Sair\n";
         cout << "Escolha uma opcao: ";
         if (!(cin >> option))
         {
@@ -35,19 +36,25 @@ void mainMenu()
         {
         case 1:
             system("CLS"); // Limpa a tela
-            stockMenu();
+            // adiciionar Menu de Compra
             break;
         case 2:
             system("CLS"); // Limpa a tela
+            stockMenu();
             break;
         case 3:
             system("CLS"); // Limpa a tela
-            MenuCliente();
+            // Adicionar Menu de Vendas
             break;
         case 4:
             system("CLS"); // Limpa a tela
+            clientMenu();
             break;
         case 5:
+            system("CLS"); // Limpa a tela
+            // Adicionar Menu de Relatorios
+            break;
+        case 6:
             cout << RED << endl
                  << "A desligar o programa...\n"
                  << RESET;
@@ -58,7 +65,7 @@ void mainMenu()
                  << "Opcao invalida. Tente novamente.\n";
             break;
         }
-    } while (option != 7); // Repete o menu até sair do programa
+    } while (option != 6); // Repete o menu até sair do programa
 }
 
 void stockMenu()
@@ -73,7 +80,8 @@ void stockMenu()
         cout << "[1] Adicionar Produto\n";
         cout << "[2] Remover Produto\n";
         cout << "[3] Modificar Preco\n";
-        cout << "[4] Voltar ao Menu\n";
+        cout << "[4] Modificar Quantidade\n";
+        cout << "[5] Voltar ao Menu\n";
         cout << "Escolha uma opcao: ";
         if (!(cin >> option))
         {
@@ -93,9 +101,14 @@ void stockMenu()
             break;
         case 3:
             system("CLS"); // Limpa a tela
-            // adicionar metodo
+            products.setProductPrice();
             break;
+
         case 4:
+            system("CLS"); // Limpa a tela
+            products.setProductQuantity();
+            break;
+        case 5:
             break;
         default:
             // Opcao invalida
@@ -103,10 +116,10 @@ void stockMenu()
                  << "Opcao invalida. Tente novamente.\n";
             break;
         }
-    } while (option != 4); // Repete o menu até sair do programa
+    } while (option != 5); // Repete o menu até sair do programa
 }
 
-void MenuCliente()
+void clientMenu()
 {
     int option;
     do
@@ -117,8 +130,9 @@ void MenuCliente()
              << endl;
         cout << "[1] Adicionar Cliente\n";
         cout << "[2] Remover Cliente\n";
-        cout << "[3] Modificar Telefone/Morada/Altura\n";
-        cout << "[4] Voltar ao Menu\n";
+        cout << "[3] Modificar Telefone\n";
+        cout << "[4] Modificar Telefone\n";
+        cout << "[5] Voltar ao Menu\n";
         cout << "Escolha uma opcao: ";
         if (!(cin >> option))
         {
@@ -141,9 +155,12 @@ void MenuCliente()
         case 3:
             system("CLS"); // Limpa a tela
             // adicionar metodo
+            products.setClientPhone();
             break;
         case 4:
             system("CLS"); // Limpa a tela
+            // adicionar metodo
+            products.setClientAddress();
             break;
         default:
             // Opcao invalida
@@ -151,7 +168,7 @@ void MenuCliente()
                  << "Opcao invalida. Tente novamente.\n";
             break;
         }
-    } while (option != 4); // Repete o menu até sair do programa
+    } while (option != 5); // Repete o menu até sair do programa
 }
 
 int main()

@@ -21,7 +21,7 @@ Shop::Shop()
     saveClient("Diogo", "967890123", "Avenida dos Descobrimentos, 10");
     saveClient("Rita", "919876543", "Praca da Republica, 1");
     saveClient("Tiago", "934567890", "Rua das Flores, 42");
-    saveClient("Leandro", "999PorfavorNincomode", "Debaixo da Ponte, 42");
+    saveClient("Leandro", "999PfNaoincomode", "Debaixo da Ponte, 42");
 }
 // Shop::Product
 void Shop::saveProduct(string name, int quantity, double priceWoiva)
@@ -45,6 +45,9 @@ void Shop::addProductstock()
         string nameProduct;
         int quantityProduct;
         double priceProduct;
+        printStock();
+        cout << endl
+             << endl;
         cout << "Nome: ";
         cin.ignore();
         getline(cin, nameProduct); // Maneira de conseguir ler tudo ate ao enter inves de ate ao espaco
@@ -61,17 +64,18 @@ void Shop::addProductstock()
     }
 }
 
-int Shop::searchProduct(string name)
+int Shop::searchProduct(int id)
 {
     for (int i = 0; i < sizeStock; i++)
     {
-        if (name == products[i].getName())
+        if (products[i].getId() == id)
         {
             return i;
         }
     }
     return -1;
 }
+
 void Shop::printStock()
 {
     cout << left << setw(5) << "ID"
@@ -97,9 +101,9 @@ void Shop::printProduct(int i)
              << "Nao existe esse Produto";
     }
 }
-void Shop::removeProduct(string name)
+void Shop::removeProduct(int id)
 {
-    int position = searchProduct(name);
+    int position = searchProduct(id);
     for (int i = position; i < sizeStock; i++)
     {
         products[i] = products[i + 1];
@@ -108,15 +112,52 @@ void Shop::removeProduct(string name)
 }
 void Shop::removeProductstock()
 {
-    string nameRemoveprod;
+    int idRemovePrroduct;
     printStock();
     cout << endl
          << endl;
 
     cout << "Nome do Artigo a Apagar: ";
-    cin.ignore();
-    getline(cin, nameRemoveprod);
-    removeProduct(nameRemoveprod);
+    cin >> idRemovePrroduct;
+    removeProduct(idRemovePrroduct);
+}
+void Shop::setProductPrice()
+{
+    int idProdAlt;
+    double novoPreco;
+    printStock();
+    cout << endl
+         << endl;
+    cout << "ID do Produto: ";
+    cin >> idProdAlt;
+    int index = searchProduct(idProdAlt);
+    if (index == -1)
+    {
+        cout << "Produto nao encontrado!" << endl;
+        return;
+    }
+    cout << "Novo Preco: ";
+    cin >> novoPreco;
+    products[index].setPriceWoiva(novoPreco);
+}
+void Shop::setProductQuantity()
+{
+    int idProdAlt;
+    double newQuantity;
+    printStock();
+    cout << endl
+         << endl;
+    cout << "ID do Produto: ";
+    cin >> idProdAlt;
+    int index = searchProduct(idProdAlt);
+    if (index == -1)
+    {
+        cout << "Produto nao encontrado!" << endl;
+        return;
+    }
+    cout << "Nova Quantidade: ";
+    cin >> newQuantity;
+    products[index].setQuantity(newQuantity);
 }
 
 // Shop::Client
@@ -136,6 +177,9 @@ void Shop::addClient()
         string nameClient;
         string cellClient;
         string addressClient;
+        printClientList();
+        cout << endl
+             << endl;
         cout << "Nome: ";
         cin.ignore();
         getline(cin, nameClient); // Maneira de conseguir ler tudo ate ao enter inves de ate ao espaco
@@ -152,11 +196,11 @@ void Shop::addClient()
     }
 }
 
-int Shop::searchClient(string name)
+int Shop::searchClient(int id)
 {
     for (int i = 0; i < sizeClientList; i++)
     {
-        if (name == list[i].getName())
+        if (list[i].getId() == id)
         {
             return i;
         }
@@ -177,9 +221,9 @@ void Shop::printClientList()
     }
 }
 
-void Shop::removeClient(string name)
+void Shop::removeClient(int id)
 {
-    int pos = searchClient(name); // pos = position
+    int pos = searchClient(id); // pos = position
     for (int i = pos; i < sizeClientList; i++)
     {
         list[i] = list[i + 1];
@@ -188,13 +232,51 @@ void Shop::removeClient(string name)
 }
 void Shop::removeFromclientlist()
 {
-    string nameRemoveclient;
+    int IdRemoveclient;
     printClientList();
     cout << endl
          << endl;
 
     cout << "Nome do Cliente a Apagar: ";
-    cin.ignore();
-    getline(cin, nameRemoveclient);
-    removeClient(nameRemoveclient);
+    cin >> IdRemoveclient;
+    removeClient(IdRemoveclient);
+}
+
+void Shop::setClientPhone()
+{
+    int idProdAlt;
+    string newPhone;
+    printClientList();
+    cout << endl
+         << endl;
+    cout << "ID do Cliente: ";
+    cin >> idProdAlt;
+    int index = searchClient(idProdAlt);
+    if (index == -1)
+    {
+        cout << "Cliente nao encontrado!" << endl;
+        return;
+    }
+    cout << "Novo Telefone: ";
+    cin >> newPhone;
+    list[index].setPhone(newPhone);
+}
+void Shop::setClientAddress()
+{
+    int idProdAlt;
+    string newAddress;
+    printClientList();
+    cout << endl
+         << endl;
+    cout << "ID do Cliente: ";
+    cin >> idProdAlt;
+    int index = searchClient(idProdAlt);
+    if (index == -1)
+    {
+        cout << "Cliente nao encontrado!" << endl;
+        return;
+    }
+    cout << "Nova Morada: ";
+    cin >> newAddress;
+    list[index].setAddress(newAddress);
 }

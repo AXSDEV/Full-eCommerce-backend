@@ -10,33 +10,9 @@
 
 class Shop
 {
-    Product products[100];
-    Client list[100];
-    int sizeStock = 0;
-    int sizeClientList = 0;
 
 public:
     Shop();
-    // Products
-    void saveProduct(string name, int quantity, double priceWoiva);
-    int searchProduct(int id);
-    void printStock();
-    void printProduct(int i);
-    void removeProduct(int id);
-    void addProductstock();
-    void removeProductstock();
-    void setProductPrice();
-    void setProductQuantity();
-
-    // Clients
-    void saveClient(string name, string phone, string address);
-    int searchClient(int id);
-    void printClientList();
-    void removeClient(int id);
-    void removeFromclientlist();
-    void addClient();
-    void setClientPhone();
-    void setClientAddress();
 
 private:
 };

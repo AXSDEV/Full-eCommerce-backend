@@ -1,11 +1,13 @@
 #ifndef MENU_H
 #define MENU_H
+#include "Stock.h"
+#include "ClientList.h"
+#include "Sales.h"
 #include "Shop.h"
-#include "Product.h"
-#include "Client.h"
 
 class Menu
 {
+
 public:
     Menu();
     void mainMenu();
@@ -13,11 +15,11 @@ public:
     void clientMenu();
     void salesMenu();
     void buyMenu();
-    void relatoryMenu();
+    void reportMenu();
 
 private:
-    Shop products;
-    Shop list;
+    ClientList list;
+    Stock products;
 };
 
 #endif

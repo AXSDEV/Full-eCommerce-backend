@@ -1,4 +1,13 @@
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#include <windows.h>
 #include "Menu.h"
+#include "Stock.h"
+#include "ClientList.h"
+#define RESET "\033[0m"          // Define a cor de texto para padrão
+#define RED "\033[31m"           // Define a cor de texto para vermelho
+#define GREEN "\033[32m"         // Define a cor de texto para verde
+#define BRIGHT_YELLOW "\033[93m" // Define a cor de texto amarelo brilhante
 
 Menu::Menu()
 {
@@ -9,7 +18,7 @@ void Menu::mainMenu()
     int option;
     do
     {
-        system("CLS"); // Limpa a tela
+        system("CLS");
         cout << endl
              << BRIGHT_YELLOW << "|=============| "
              << "Papelaria Note & Book"
@@ -28,27 +37,28 @@ void Menu::mainMenu()
             cin.clear();
             cin.ignore(1000, '\n');
             cout << "Apenas pode inserir numeros. Por favor tente novamente.\n";
+            Sleep(2400);
         }
         switch (option)
         {
         case 1:
-            system("CLS"); // Limpa a tela
-            // adiciionar Menu de Compra
+            system("CLS");
+            // adicionar Menu de Compra
             break;
         case 2:
-            system("CLS"); // Limpa a tela
-            stockMenu();   // <-- Sem parâmetro
+            system("CLS");
+            stockMenu();
             break;
         case 3:
-            system("CLS"); // Limpa a tela
+            system("CLS");
             // Adicionar Menu de Vendas
             break;
         case 4:
-            system("CLS"); // Limpa a tela
-            clientMenu();  // <-- Sem parâmetro
+            system("CLS");
+            clientMenu();
             break;
         case 5:
-            system("CLS"); // Limpa a tela
+            system("CLS");
             // Adicionar Menu de Relatorios
             break;
         case 6:
@@ -57,7 +67,6 @@ void Menu::mainMenu()
                  << RESET;
             break;
         default:
-            // Opcao invalida
             cout << endl
                  << "Opcao invalida. Tente novamente.\n";
             break;
@@ -70,7 +79,7 @@ void Menu::stockMenu()
     int option;
     do
     {
-        system("CLS"); // Limpa a tela
+        system("CLS");
         products.printStock();
         cout << endl
              << endl;
@@ -85,24 +94,25 @@ void Menu::stockMenu()
             cin.clear();
             cin.ignore(1000, '\n');
             cout << "Apenas pode inserir numeros. Por favor tente novamente.\n";
+            Sleep(2400);
         }
         switch (option)
         {
         case 1:
-            system("CLS"); // Limpa a tela
+            system("CLS");
             products.addProductstock();
             break;
         case 2:
-            system("CLS"); // Limpa a tela
+            system("CLS");
             products.removeProductstock();
             break;
         case 3:
-            system("CLS"); // Limpa a tela
+            system("CLS");
             products.setProductPrice();
             break;
 
         case 4:
-            system("CLS"); // Limpa a tela
+            system("CLS");
             products.setProductQuantity();
             break;
         case 5:
@@ -120,7 +130,7 @@ void Menu::clientMenu()
     int option;
     do
     {
-        system("CLS"); // Limpa a tela
+        system("CLS");
         list.printClientList();
         cout << endl
              << endl;
@@ -135,26 +145,27 @@ void Menu::clientMenu()
             cin.clear();
             cin.ignore(1000, '\n');
             cout << "Apenas pode inserir numeros. Por favor tente novamente.\n";
+            Sleep(2400);
         }
         switch (option)
         {
         case 1:
-            system("CLS"); // Limpa a tela
+            system("CLS");
             // adicionar metodo
             list.addClient();
             break;
         case 2:
-            system("CLS"); // Limpa a tela
+            system("CLS");
             // adicionar metodo
             list.removeFromclientlist();
             break;
         case 3:
-            system("CLS"); // Limpa a tela
+            system("CLS");
             // adicionar metodo
             list.setClientPhone();
             break;
         case 4:
-            system("CLS"); // Limpa a tela
+            system("CLS");
             // adicionar metodo
             list.setClientAddress();
             break;
@@ -175,6 +186,6 @@ void Menu::buyMenu()
 {
 }
 
-void Menu::relatoryMenu()
+void Menu::reportMenu()
 {
 }

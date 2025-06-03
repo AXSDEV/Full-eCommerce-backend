@@ -1,7 +1,11 @@
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#include <windows.h>
 #include "Client.h"
 #include "Product.h"
 #include "Client.h"
 #include "Shop.h"
+
 Shop products;
 void mainMenu();
 void stockMenu();
@@ -31,12 +35,13 @@ void mainMenu()
             cin.clear();
             cin.ignore(1000, '\n');
             cout << "Apenas pode inserir numeros. Por favor tente novamente.\n";
+            Sleep(2400);
         }
         switch (option)
         {
         case 1:
             system("CLS"); // Limpa a tela
-            // adiciionar Menu de Compra
+            // adicionar Menu de Compra
             break;
         case 2:
             system("CLS"); // Limpa a tela
@@ -88,6 +93,7 @@ void stockMenu()
             cin.clear();
             cin.ignore(1000, '\n');
             cout << "Apenas pode inserir numeros. Por favor tente novamente.\n";
+            Sleep(2400);
         }
         switch (option)
         {
@@ -131,7 +137,7 @@ void clientMenu()
         cout << "[1] Adicionar Cliente\n";
         cout << "[2] Remover Cliente\n";
         cout << "[3] Modificar Telefone\n";
-        cout << "[4] Modificar Telefone\n";
+        cout << "[4] Modificar Morada\n";
         cout << "[5] Voltar ao Menu\n";
         cout << "Escolha uma opcao: ";
         if (!(cin >> option))
@@ -139,6 +145,7 @@ void clientMenu()
             cin.clear();
             cin.ignore(1000, '\n');
             cout << "Apenas pode inserir numeros. Por favor tente novamente.\n";
+            Sleep(2400);
         }
         switch (option)
         {

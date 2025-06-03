@@ -112,14 +112,14 @@ void Shop::removeProduct(int id)
 }
 void Shop::removeProductstock()
 {
-    int idRemovePrroduct;
+    int idRemoveProduct;
     printStock();
     cout << endl
          << endl;
 
-    cout << "Nome do Artigo a Apagar: ";
-    cin >> idRemovePrroduct;
-    removeProduct(idRemovePrroduct);
+    cout << "ID do Artigo a Apagar: ";
+    cin >> idRemoveProduct;
+    removeProduct(idRemoveProduct);
 }
 void Shop::setProductPrice()
 {
@@ -183,9 +183,9 @@ void Shop::addClient()
         cout << "Nome: ";
         cin.ignore();
         getline(cin, nameClient); // Maneira de conseguir ler tudo ate ao enter inves de ate ao espaco
-        cout << "CellPhoneNumber: ";
+        cout << "Telemovel: ";
         getline(cin, cellClient);
-        cout << "Address: ";
+        cout << "Morada: ";
         getline(cin, addressClient);
 
         saveClient(nameClient, cellClient, addressClient);
@@ -237,7 +237,7 @@ void Shop::removeFromclientlist()
     cout << endl
          << endl;
 
-    cout << "Nome do Cliente a Apagar: ";
+    cout << "ID do Cliente a Apagar: ";
     cin >> IdRemoveclient;
     removeClient(IdRemoveclient);
 }
@@ -277,6 +277,7 @@ void Shop::setClientAddress()
         return;
     }
     cout << "Nova Morada: ";
-    cin >> newAddress;
+    cin.ignore();
+    getline(cin, newAddress);
     list[index].setAddress(newAddress);
 }

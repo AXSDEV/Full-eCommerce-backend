@@ -96,7 +96,6 @@ void stockMenu()
             // adicionar metodo
             break;
         case 4:
-            system("CLS"); // Limpa a tela
             break;
         default:
             // Opcao invalida

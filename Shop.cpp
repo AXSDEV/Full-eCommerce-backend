@@ -161,7 +161,10 @@ int Shop::searchClient(string name)
             return i;
         }
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 1aa1ba6c4e0d6aba45a11ca4812a02fd7dd79524
     return -1;
 }
 

@@ -2,7 +2,6 @@
 #define MENU_H
 #include "Stock.h"
 #include "ClientList.h"
-#include "Sales.h"
 #include "Shop.h"
 
 class Menu
@@ -13,7 +12,7 @@ public:
     void mainMenu();
     void stockMenu();
     void clientMenu();
-    void salesMenu();
+    // void salesMenu();
     void buyMenu();
     void reportMenu();
 

@@ -178,10 +178,6 @@ void Menu::clientMenu()
     } while (option != 5); // Repete o menu até sair do programa
 }
 
-void Menu::salesMenu()
-{
-}
-
 void Menu::buyMenu()
 {
 }

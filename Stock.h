@@ -4,10 +4,11 @@
 
 class Stock
 {
-    Product products[100];
-    int sizeStock = 0;
 
 public:
+    // Criacao do Vector do Objecto Products
+    Product products[100];
+    int sizeStock = 0;
     Stock();
     void saveProduct(string name, int quantity, double priceWoiva);
     int searchProduct(int id);

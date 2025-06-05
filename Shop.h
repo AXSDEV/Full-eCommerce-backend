@@ -12,7 +12,7 @@
 class Shop
 {
     Stock product;
-    // Criacao do Vector do Objecto ShopCart
+    // Criacao do Vector do Objeto ShopCart
     ShopCart cart[100];
     int sizeCart = 0;
 

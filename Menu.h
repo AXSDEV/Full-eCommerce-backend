@@ -12,13 +12,14 @@ public:
     void mainMenu();
     void stockMenu();
     void clientMenu();
-    // void salesMenu();
+    void salesMenu();
     void buyMenu();
     void reportMenu();
 
 private:
     ClientList list;
     Stock products;
+    Shop cart;
 };
 
 #endif

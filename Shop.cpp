@@ -26,26 +26,26 @@ void Shop::addProductCart()
         product.printStock();
         cout << endl
              << endl;
-        cout << "ID do Produto a adiconar: ";
+        cout << "ID do Produto a adicionar: ";
         cin >> idProdAdd;
-        if (idProdAdd < sizeCart)
+
+        int idx = product.searchProduct(idProdAdd);
+        if (idx != -1)
         {
-            int idx = product.searchProduct(idProdAdd);
-            if (idx != -1)
-            {
-                Product prod = product.products[idx];
-                int quantidade;
-                cout << "Quantidade a adicionar: ";
-                // Adicionar ao carrinho
-                ShopCart cartobj(prod.getName(), quantidade, prod.getPriceWoiva());
-                cart[sizeCart] = cartobj;
-                sizeCart++;
-                cout << "Produto adicionado ao carrinho!";
-            }
-            else
-            {
-                cout << "Produto nao encontrado !";
-            }
+            Product prod = product.products[idx];
+            int quantidade;
+            cout << "Quantidade a adicionar: ";
+            cin >> quantidade;
+            // Adicionar ao carrinho
+            ShopCart cartobj(prod.getName(), quantidade, prod.getPriceWoiva());
+            cart[sizeCart] = cartobj;
+            sizeCart++;
+            // TODO atualizar stock
+            cout << "Produto adicionado ao carrinho!";
+        }
+        else
+        {
+            cout << "Produto nao encontrado !";
         }
     }
     else

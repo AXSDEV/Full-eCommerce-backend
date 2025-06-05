@@ -4,6 +4,8 @@
 #include "Menu.h"
 #include "Stock.h"
 #include "ClientList.h"
+#include "ShopCart.h"
+#include "Shop.h"
 #define RESET "\033[0m"          // Define a cor de texto para padrão
 #define RED "\033[31m"           // Define a cor de texto para vermelho
 #define GREEN "\033[32m"         // Define a cor de texto para verde
@@ -44,6 +46,7 @@ void Menu::mainMenu()
         case 1:
             system("CLS");
             // adicionar Menu de Compra
+            buyMenu();
             break;
         case 2:
             system("CLS");
@@ -180,6 +183,52 @@ void Menu::clientMenu()
 
 void Menu::buyMenu()
 {
+    int option;
+    do
+    {
+        system("CLS");
+        // cart.printShopCart();
+        cout << endl
+             << endl;
+        cout << "[1] Adicionar ao Carrinho\n";
+        cout << "[2] Remover do Carrinho\n";
+        cout << "[3] Modificar Quantidade\n";
+        cout << "[4] Cancelar Compra\n";
+        cout << "[5] Voltar ao Menu\n";
+        cout << "Escolha uma opcao: ";
+        if (!(cin >> option))
+        {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Apenas pode inserir numeros. Por favor tente novamente.\n";
+            Sleep(2400);
+        }
+        switch (option)
+        {
+        case 1:
+            system("CLS");
+            // adicionar metodo
+            cart.addProductCart();
+        case 2:
+            system("CLS");
+            // adicionar metodo
+
+            break;
+        case 3:
+            system("CLS");
+            // adicionar metodo
+            break;
+        case 4:
+            system("CLS");
+            // adicionar metodo
+            break;
+        default:
+            // Opcao invalida
+            cout << endl
+                 << "Opcao invalida. Tente novamente.\n";
+            break;
+        }
+    } while (option != 5); // Repete o menu até sair do programa
 }
 
 void Menu::reportMenu()

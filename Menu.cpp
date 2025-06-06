@@ -210,14 +210,14 @@ void Menu::buyMenu()
         case 1:
             system("CLS");
             shop.addProductInCart();
+            break;
         case 2:
             system("CLS");
-            // adicionar metodo
-
+            shop.removefromCart();
             break;
         case 3:
             system("CLS");
-            // adicionar metodo
+            shop.modifyqntCart();
             break;
         case 4:
             system("CLS");

@@ -53,6 +53,7 @@ public:
     void addProductInCart();
     void printCart();
     void removefromCart();
+    void modifyqntCart();
 };
 
 #endif

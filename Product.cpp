@@ -5,12 +5,12 @@ Product::Product()
 {
 }
 int Product::nextIdProduct = 1;
-Product::Product(string name, int quantity, double priceWoiva)
+Product::Product(string name, int quantity, double price)
 {
     this->id = nextIdProduct++;
     this->name = name;
     this->quantity = quantity;
-    this->priceWoiva = priceWoiva;
+    this->price = price;
 }
 // Gets
 int Product::getId()
@@ -25,9 +25,9 @@ int Product::getQuantity()
 {
     return quantity;
 }
-double Product::getPriceWoiva()
+double Product::getPrice()
 {
-    return priceWoiva;
+    return price;
 }
 
 // Sets
@@ -39,9 +39,9 @@ void Product::setQuantity(int quantity)
 {
     this->quantity = quantity;
 }
-void Product::setPriceWoiva(double price)
+void Product::setPrice(double price)
 {
-    this->priceWoiva = price;
+    this->price = price;
 }
 
 // tostring ou Impressao
@@ -51,6 +51,6 @@ string Product::tostring()
     ss << left << setw(5) << id
        << setw(20) << name
        << setw(10) << quantity
-       << setw(10) << fixed << setprecision(2) << priceWoiva;
+       << setw(10) << fixed << setprecision(2) << price;
     return ss.str();
 }

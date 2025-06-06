@@ -1,7 +1,7 @@
 #ifndef MENU_H
 #define MENU_H
-#include "Stock.h"
-#include "ClientList.h"
+#include "Client.h"
+#include "Product.h"
 #include "Shop.h"
 
 class Menu
@@ -15,10 +15,11 @@ public:
     void salesMenu();
     void buyMenu();
     void reportMenu();
+    bool login();
 
 private:
-    ClientList list;
-    Stock products;
+    Shop list;
+    Shop products;
     Shop cart;
 };
 

@@ -1,15 +1,15 @@
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX
 #include <windows.h>
+#include <conio.h>
 #include "Menu.h"
-#include "Stock.h"
-#include "ClientList.h"
-#include "ShopCart.h"
+#include "Sales.h"
 #include "Shop.h"
 #define RESET "\033[0m"          // Define a cor de texto para padrão
 #define RED "\033[31m"           // Define a cor de texto para vermelho
 #define GREEN "\033[32m"         // Define a cor de texto para verde
 #define BRIGHT_YELLOW "\033[93m" // Define a cor de texto amarelo brilhante
+Shop shop;
 
 Menu::Menu()
 {
@@ -83,7 +83,7 @@ void Menu::stockMenu()
     do
     {
         system("CLS");
-        products.printStock();
+        shop.printStock();
         cout << endl
              << endl;
         cout << "[1] Adicionar Produto\n";
@@ -103,20 +103,20 @@ void Menu::stockMenu()
         {
         case 1:
             system("CLS");
-            products.addProductstock();
+            shop.addProductstock();
             break;
         case 2:
             system("CLS");
-            products.removeProductstock();
+            shop.removeProductstock();
             break;
         case 3:
             system("CLS");
-            products.setProductPrice();
+            shop.setProductPrice();
             break;
 
         case 4:
             system("CLS");
-            products.setProductQuantity();
+            shop.setProductQuantity();
             break;
         case 5:
             break;
@@ -134,7 +134,7 @@ void Menu::clientMenu()
     do
     {
         system("CLS");
-        list.printClientList();
+        shop.printClientList();
         cout << endl
              << endl;
         cout << "[1] Adicionar Cliente\n";
@@ -155,22 +155,24 @@ void Menu::clientMenu()
         case 1:
             system("CLS");
             // adicionar metodo
-            list.addClient();
+            shop.addClient();
             break;
         case 2:
             system("CLS");
             // adicionar metodo
-            list.removeFromclientlist();
+            shop.removeFromclientlist();
             break;
         case 3:
             system("CLS");
             // adicionar metodo
-            list.setClientPhone();
+            shop.setClientPhone();
             break;
         case 4:
             system("CLS");
             // adicionar metodo
-            list.setClientAddress();
+            shop.setClientAddress();
+            break;
+        case 5:
             break;
         default:
             // Opcao invalida
@@ -187,7 +189,7 @@ void Menu::buyMenu()
     do
     {
         system("CLS");
-        // cart.printShopCart();
+        shop.printCart();
         cout << endl
              << endl;
         cout << "[1] Adicionar ao Carrinho\n";
@@ -207,8 +209,7 @@ void Menu::buyMenu()
         {
         case 1:
             system("CLS");
-            // adicionar metodo
-            cart.addProductCart();
+            shop.addProductInCart();
         case 2:
             system("CLS");
             // adicionar metodo
@@ -222,6 +223,8 @@ void Menu::buyMenu()
             system("CLS");
             // adicionar metodo
             break;
+        case 5:
+            break;
         default:
             // Opcao invalida
             cout << endl
@@ -233,4 +236,47 @@ void Menu::buyMenu()
 
 void Menu::reportMenu()
 {
+}
+
+bool Menu::login()
+{
+    string utilizador, senha, senhaEscondida;
+    char caracter;
+
+    cout << "====== LOGIN ADMIN ======";
+    cout << "\n Utilizador: ";
+    getline(cin, utilizador); // Lê a linha inteira, mesmo com espaços (ex: "admin arroz")
+    cout << "\n Palavra-Passe: ";
+
+    // Ler a senha sem mostrá-la
+    while ((caracter = _getch()) != 13) // Repete até carregar ENTER (ASCII 13)
+    {
+        if (caracter == 8 && !senhaEscondida.empty()) // BACKSPACE (ASCII 8) apaga último char
+        {
+            senhaEscondida.pop_back();
+            cout << "\b \b"; // Apaga último caracteres no terminal
+        }
+        else if (caracter != 8)
+        {
+            senhaEscondida.push_back(caracter); // Adiciona os caracteres digitados na string senhaEscondida
+            cout << "*";                        // Mostra * por cada caracter digitado
+        }
+    }
+
+    senha = senhaEscondida;
+
+    if (utilizador == "admin" && senha == "admin123")
+    {
+        system("CLS");
+        cout << GREEN
+             << "Bem-Vindo!"
+             << RESET;
+        Sleep(3000);
+
+        return true;
+    }
+    cout << RED << endl
+         << "\nAs credenciais sao invalidas!\n"
+         << RESET;
+    return false;
 }

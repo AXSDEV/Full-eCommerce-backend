@@ -1,8 +1,9 @@
 #ifndef SHOP_H
 #define SHOP_H
-#include "Stock.h"
-#include "ClientList.h"
-#include "ShopCart.h"
+
+#include "Client.h"
+#include "Sales.h"
+#include "Product.h"
 
 #define RESET "\033[0m"          // Define a cor de texto para padrão
 #define RED "\033[31m"           // Define a cor de texto para vermelho
@@ -11,22 +12,47 @@
 
 class Shop
 {
-    Stock product;
-    // Criacao do Vector do Objeto ShopCart
-    ShopCart cart[100];
+private:
+    Sales report[100];
+    int sizeReport = 0;
+    // Criacao do Vector do Objeto Receipt
+    Product cart[100];
     int sizeCart = 0;
+    // Criacao do Vetor do Objeto Product
+    Product products[100];
+    int sizeStock = 0;
+
+    // Criacao do Vetor do Objeto Client
+    Client list[100];
+    int sizeClientList = 0;
 
 public:
     Shop();
-    void saveCart(string name, int quantity, double priceWoiva);
-    int searchProduct(int id);
-    void printShopCart();
+    // Produtos
+    void saveProduct(string name, int quantity, double price);
+    int searchStockProduct(int id);
+    void printStock();
+    void printProduct(int i);
     void removeProduct(int id);
-    void addProductCart();
-    void removeProductCart();
-    void setCartQuantity();
+    void addProductstock();
+    void removeProductstock();
+    void setProductPrice();
+    void setProductQuantity();
 
-private:
+    // Clients
+    void saveClient(string name, string phone, string address);
+    int searchClient(int id);
+    void printClientList();
+    void removeClient(int id);
+    void removeFromclientlist();
+    void addClient();
+    void setClientPhone();
+    void setClientAddress();
+
+    // Sales
+    void addProductInCart();
+    void printCart();
+    void removefromCart();
 };
 
 #endif

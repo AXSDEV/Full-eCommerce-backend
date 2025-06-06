@@ -15,21 +15,21 @@ private:
     int id;
     string name;
     int quantity;
-    double priceWoiva;
+    double price;
 
 public:
     // Construtores
     Product();
-    Product(string name, int quantity, double priceWoiva);
+    Product(string name, int quantity, double price);
     // Gets
     int getId();
     string getName();
     int getQuantity();
-    double getPriceWoiva();
+    double getPrice();
     // Sets
     void setName();
     void setQuantity(int quantity);
-    void setPriceWoiva(double price);
+    void setPrice(double price);
     // to string
     string tostring();
 };

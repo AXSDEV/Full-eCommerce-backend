@@ -4,7 +4,7 @@
 Project for a small-business in C++. School project.
 ---
 
-✅ To-Do List 
+✅ To-Do List
 1.Class Stock e tudo o que Abrange;
 2.Class Cliente e tudo o que Abrange;
 3.Menu Principal;
@@ -15,9 +15,9 @@ Project for a small-business in C++. School project.
 🛠 Extra Tasks
 1.Search Bar;
 
-
 ---
 
-AXS - I-m working on 2.Class Cliente e tudo o que Abrange;
+AXS - I-m working on Cart;
+
 <p>
-BernardoSilva-Coder - I'm working on 1.Class Stock e tudo o que Abrange;
+BernardoSilva-Coder - I'm working on Cart;

@@ -402,71 +402,71 @@ void Shop::removefromCart()
         cout << "Nao existe um produto com esse ID no carrinho. " << endl;
     }
 }
-// void Shop::modifyqntCart()
-// {
-//     printCart(); // Mostra o carrinho atual ao utilizador
+void Shop::modifyqntCart()
+{
+    printCart(); // Mostra o carrinho atual ao utilizador
 
-//     int idModify;
-//     int newcartQnt;
+    int idModify;
+    int newcartQnt;
 
-//     cout << endl
-//          << endl;
-//     cout << "ID do Produto a modificar a quantidade: ";
-//     cin >> idModify;
+    cout << endl
+         << endl;
+    cout << "ID do Produto a modificar a quantidade: ";
+    cin >> idModify;
 
-//     int index = -1; // Variável para guardar o índice do produto no carrinho
+    int index = -1; // Variável para guardar o índice do produto no carrinho
 
-//     // Procura o produto no carrinho pelo ID
-//     for (int i = 0; i < sizeCart; i++)
-//     {
-//         if (cart[i].getId() == idModify)
-//         {
-//             index = i; // Guarda o índice se encontrar
-//             break;     // Sai do ciclo assim que encontra
-//         }
-//     }
+    // Procura o produto no carrinho pelo ID
+    for (int i = 0; i < sizeCart; i++)
+    {
+        if (cart[i].getId() == idModify)
+        {
+            index = i; // Guarda o índice se encontrar
+            break;     // Sai do ciclo assim que encontra
+        }
+    }
 
-//     if (index != -1) // Se encontrou o produto no carrinho
-//     {
-//         int oldQnt = cart[index].getQuantity(); // Guarda a quantidade antiga no carrinho
+    if (index != -1) // Se encontrou o produto no carrinho
+    {
+        int oldQnt = cart[index].getQuantity(); // Guarda a quantidade antiga no carrinho
 
-//         // Procura o produto no stock pelo mesmo ID
-//         int stockIndex = searchStockProduct(idModify);
-//         if (stockIndex == -1)
-//         {
-//             cout << "Produto não encontrado no stock!" << endl;
-//             return; // Sai da função se não encontrar no stock
-//         }
+        // Procura o produto no stock pelo mesmo ID
+        int stockIndex = searchStockProduct(idModify);
+        if (stockIndex == -1)
+        {
+            cout << "Produto não encontrado no stock!" << endl;
+            return; // Sai da função se não encontrar no stock
+        }
 
-//         cout << "Quantidade atual no carrinho: " << oldQnt << endl;
-//         cout << "Nova quantidade: ";
-//         cin >> newcartQnt; // Lê a nova quantidade desejada
+        cout << "Quantidade atual no carrinho: " << oldQnt << endl;
+        cout << "Nova quantidade: ";
+        cin >> newcartQnt; // Lê a nova quantidade desejada
 
-//         if (newcartQnt <= 0)
-//         {
-//             cout << "Quantidade inválida!" << endl;
-//             return; // Sai se a quantidade for inválida
-//         }
+        if (newcartQnt <= 0)
+        {
+            cout << "Quantidade inválida!" << endl;
+            return; // Sai se a quantidade for inválida
+        }
 
-//         // Calcula o stock disponível (stock atual + o que já estava no carrinho)
-//         int availableStock = products[stockIndex].getQuantity() + oldQnt;
+        // Calcula o stock disponível (tock atual s+ o que já estava no carrinho)
+        int availableStock = products[stockIndex].getQuantity() + oldQnt;
 
-//         if (newcartQnt > availableStock)
-//         {
-//             cout << "Quantidade insuficiente em stock!" << endl;
-//             return; // Sai se não houver stock suficiente
-//         }
+        if (newcartQnt > availableStock)
+        {
+            cout << "Quantidade insuficiente em stock!" << endl;
+            return; // Sai se não houver stock suficiente
+        }
 
-//         // Atualiza o stock do produto (stock disponível - nova quantidade no carrinho)
-//         products[stockIndex].setQuantity(availableStock - newcartQnt);
+        // Atualiza o stock do produto (stock disponível - nova quantidade no carrinho)
+        products[stockIndex].setQuantity(availableStock - newcartQnt);
 
-//         // Atualiza a quantidade do produto no carrinho
-//         cart[index].setQuantity(newcartQnt);
+        // Atualiza a quantidade do produto no carrinho
+        cart[index].setQuantity(newcartQnt);
 
-//         cout << "Quantidade modificada com sucesso!" << endl;
-//     }
-//     else // Se não encontrou o produto no carrinho
-//     {
-//         cout << "Produto não encontrado no carrinho!" << endl;
-//     }
-// }
+        cout << "Quantidade modificada com sucesso!" << endl;
+    }
+    else // Se não encontrou o produto no carrinho
+    {
+        cout << "Produto não encontrado no carrinho!" << endl;
+    }
+}

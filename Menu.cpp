@@ -217,7 +217,7 @@ void Menu::buyMenu()
             break;
         case 3:
             system("CLS");
-            // shop.modifyqntCart();
+            shop.modifyqntCart();
             break;
         case 4:
             system("CLS");

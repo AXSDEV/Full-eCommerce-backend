@@ -54,6 +54,8 @@ public:
     void printCart();
     void removefromCart();
     void modifyqntCart();
+    int cartSize();
+    void clearCart();
 };
 
 #endif

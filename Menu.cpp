@@ -189,6 +189,29 @@ void Menu::buyMenu()
     do
     {
         system("CLS");
+        // char isClient = 's';
+        // cout << "Ja e nosso Cliente ?";
+        // cin >> isClient;
+        // if (isClient == 's')
+        // {
+        //     int idsearchClient;
+        //     cout << "Qual o seu ID de Cliente : ";
+        //     cin >> idsearchClient;
+        //     list.searchClient(idsearchClient);
+        // }
+        // else
+        // {
+        //
+        //     while (createnewClient != 's')
+        //     {
+        //     char createnewClient = 's';
+        //     cout << "Deseja criar ficha de cliente? ";
+        //     cin >> createnewClient;
+        //         cout << "AVISO : Tem de haver uma Conta Cliente para puder prosseguir par a compra! "
+        //     }
+        //
+        // }
+
         shop.printCart();
         cout << endl
              << endl;
@@ -221,7 +244,7 @@ void Menu::buyMenu()
             break;
         case 4:
             system("CLS");
-            // adicionar metodo
+            shop.clearCart();
             break;
         case 5:
             break;

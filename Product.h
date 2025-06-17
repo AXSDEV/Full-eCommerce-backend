@@ -16,6 +16,9 @@ private:
     string name;
     int quantity;
     double price;
+    double sellPrice;
+    double iva;
+    double total;
 
 public:
     // Construtores
@@ -26,12 +29,16 @@ public:
     string getName();
     int getQuantity();
     double getPrice();
+    double getSellPrice();
+    double getIva();
+    double getTotal();
     // Sets
     void setName();
     void setQuantity(int quantity);
     void setPrice(double price);
     // to string
     string tostring();
+    string toStringCart();
 };
 
 #endif

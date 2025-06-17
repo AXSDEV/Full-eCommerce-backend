@@ -9,7 +9,6 @@ class Sales
 private:
 public:
     Sales();
-    Sales();
 };
 
 #endif

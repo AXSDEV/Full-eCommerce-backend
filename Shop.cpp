@@ -84,10 +84,14 @@ int Shop::searchStockProduct(int id)
 
 void Shop::printStock()
 {
-    cout << left << setw(5) << "ID"
-         << setw(20) << "Nome"
-         << setw(10) << "Qnt"
-         << setw(10) << "Preco" << endl;
+    cout << endl
+         << BRIGHT_YELLOW << "|================| "
+         << "STOCK"
+         << " |=================|\n"
+         << RESET;
+    cout << "--------------------------------------------\n";
+    cout << "| ID  | Nome           | Qtd | Preco Custo |\n";
+    cout << "--------------------------------------------\n";
     for (int i = 0; i < sizeStock; i++)
     {
         cout << endl
@@ -367,7 +371,8 @@ void Shop::printCart()
         cout << "----------------------------------------------------------------\n";
         for (int i = 0; i < sizeCart; i++)
         {
-            cout << cart[i].tostring() << endl;
+
+            cout << cart[i].toStringCart() << endl;
         }
     }
 }
@@ -415,14 +420,14 @@ void Shop::modifyqntCart()
     cout << "ID do Produto a modificar a quantidade: ";
     cin >> idModify;
 
-    int index = -1; // Variável para guardar o índice do produto no carrinho
+    int index = -1; // Variavel para guardar o indice do produto no carrinho
 
     // Procura o produto no carrinho pelo ID
     for (int i = 0; i < sizeCart; i++)
     {
         if (cart[i].getId() == idModify)
         {
-            index = i; // Guarda o índice se encontrar
+            index = i; // Guarda o indice se encontrar
             break;     // Sai do ciclo assim que encontra
         }
     }
@@ -435,30 +440,30 @@ void Shop::modifyqntCart()
         int stockIndex = searchStockProduct(idModify);
         if (stockIndex == -1)
         {
-            cout << "Produto não encontrado no stock!" << endl;
-            return; // Sai da função se não encontrar no stock
+            cout << "Produto nao encontrado no stock!" << endl;
+            return; // Sai da funcao se nao encontrar no stock
         }
 
         cout << "Quantidade atual no carrinho: " << oldQnt << endl;
         cout << "Nova quantidade: ";
-        cin >> newcartQnt; // Lê a nova quantidade desejada
+        cin >> newcartQnt; // Le a nova quantidade desejada
 
         if (newcartQnt <= 0)
         {
-            cout << "Quantidade inválida!" << endl;
-            return; // Sai se a quantidade for inválida
+            cout << "Quantidade invalida!" << endl;
+            return; // Sai se a quantidade for invalida
         }
 
-        // Calcula o stock disponível (tock atual s+ o que já estava no carrinho)
+        // Calcula o stock disponivel (stock atual s+ o que ja estava no carrinho)
         int availableStock = products[stockIndex].getQuantity() + oldQnt;
 
         if (newcartQnt > availableStock)
         {
             cout << "Quantidade insuficiente em stock!" << endl;
-            return; // Sai se não houver stock suficiente
+            return; // Sai se nao houver stock suficiente
         }
 
-        // Atualiza o stock do produto (stock disponível - nova quantidade no carrinho)
+        // Atualiza o stock do produto (stock disponivel - nova quantidade no carrinho)
         products[stockIndex].setQuantity(availableStock - newcartQnt);
 
         // Atualiza a quantidade do produto no carrinho
@@ -466,8 +471,34 @@ void Shop::modifyqntCart()
 
         cout << "Quantidade modificada com sucesso!" << endl;
     }
-    else // Se não encontrou o produto no carrinho
+    else // Se nao encontrou o produto no carrinho
     {
-        cout << "Produto não encontrado no carrinho!" << endl;
+        cout << "Produto nao encontrado no carrinho!" << endl;
+    }
+}
+
+int Shop::cartSize()
+{
+    return sizeCart;
+}
+
+void Shop::clearCart()
+{
+    if (cartSize() > 0)
+    {
+        cout << "Tem certeza que deseja cancelar a comprar e esvaziar o carrinho? (S/N): ";
+        char confirmation;
+        cin >> confirmation;
+        if (confirmation == 'S')
+        {
+            for (int i = 0; i < sizeCart; i++)
+            {
+                products[i].setQuantity(products[i].getQuantity() + cart[i].getQuantity());
+            }
+
+            sizeCart = 0;
+            cout << endl
+                 << "Compra cancelada com sucesso e carrinho vazio!";
+        }
     }
 }

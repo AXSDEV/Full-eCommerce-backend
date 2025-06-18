@@ -62,7 +62,7 @@ void Product::setPrice(double price)
 // tostring ou Impressao
 string Product::tostring()
 {
-    std::stringstream ss;
+    stringstream ss;
     ss << left << setw(5) << id
        << setw(20) << name
        << setw(10) << quantity
@@ -72,7 +72,7 @@ string Product::tostring()
 
 string Product::toStringCart()
 {
-    std::stringstream ss;
+    stringstream ss;
     ss << left << setw(5) << id
        << setw(20) << name
        << setw(10) << quantity

@@ -189,37 +189,15 @@ void Menu::buyMenu()
     do
     {
         system("CLS");
-        // char isClient = 's';
-        // cout << "Ja e nosso Cliente ?";
-        // cin >> isClient;
-        // if (isClient == 's')
-        // {
-        //     int idsearchClient;
-        //     cout << "Qual o seu ID de Cliente : ";
-        //     cin >> idsearchClient;
-        //     list.searchClient(idsearchClient);
-        // }
-        // else
-        // {
-        //
-        //     while (createnewClient != 's')
-        //     {
-        //     char createnewClient = 's';
-        //     cout << "Deseja criar ficha de cliente? ";
-        //     cin >> createnewClient;
-        //         cout << "AVISO : Tem de haver uma Conta Cliente para puder prosseguir par a compra! "
-        //     }
-        //
-        // }
-
         shop.printCart();
         cout << endl
              << endl;
         cout << "[1] Adicionar ao Carrinho\n";
         cout << "[2] Remover do Carrinho\n";
         cout << "[3] Modificar Quantidade\n";
-        cout << "[4] Cancelar Compra\n";
-        cout << "[5] Voltar ao Menu\n";
+        cout << "[4] Checkout\n";
+        cout << "[5] Cancelar Compra\n";
+        cout << "[6] Voltar ao Menu\n";
         cout << "Escolha uma opcao: ";
         if (!(cin >> option))
         {
@@ -244,9 +222,13 @@ void Menu::buyMenu()
             break;
         case 4:
             system("CLS");
-            shop.clearCart();
+            shop.checkout();
             break;
         case 5:
+            system("CLS");
+            shop.clearCart();
+            break;
+        case 6:
             break;
         default:
             // Opcao invalida

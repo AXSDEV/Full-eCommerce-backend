@@ -187,7 +187,6 @@ void Shop::addClient()
         string nameClient;
         string cellClient;
         string addressClient;
-        printClientList();
         cout << endl
              << endl;
         cout << "Nome: ";
@@ -202,7 +201,7 @@ void Shop::addClient()
     }
     else
     {
-        cout << "Stock encontrasse cheio ! " << endl;
+        cout << "A Lista encontrasse cheia ! " << endl;
     }
 }
 
@@ -501,4 +500,106 @@ void Shop::clearCart()
                  << "Compra cancelada com sucesso e carrinho vazio!";
         }
     }
+}
+
+void Shop::checkout()
+{
+    char isClient = 's';
+    int idClientSale;
+    double payment;
+    double total;
+    int receiptNumber = 0;
+    int counter = 0;
+    do
+    {
+        cout << "Ja e nosso Cliente? (S/N) (0 para voltar atras!): ";
+        cin >> isClient;
+        if (isClient == '0')
+            break;
+
+        if (isClient == 's')
+        {
+            int idSearchClient;
+            printClientList();
+            cout << endl
+                 << "Insira o seu ID de Cliente: ";
+            cin >> idSearchClient;
+            cout << endl;
+            idClientSale = searchClient(idSearchClient);
+            break;
+        }
+        else
+        {
+            cout << "Insira os seguintes dados: ";
+            addClient();
+            break;
+        }
+    } while (isClient != '0');
+
+    printCart();
+    do
+    {
+        double subtotal = 0;
+        for (int i = 0; i < sizeCart; i++)
+        {
+            subtotal += cart[i].getTotal();
+        }
+
+        if (sizeCart == 0)
+        {
+            cout << "Carrinho vazio. Nao ha nada para finalizar." << endl;
+            return;
+        }
+
+        cout << "\nTotal a pagar: " << fixed << setprecision(2) << subtotal << " euros\n";
+        cout << endl
+             << "Valor Entregue: (0 para cancelar): ";
+        cin >> payment;
+
+        if (payment == 0)
+            return;
+
+        if (payment >= subtotal)
+        {
+            receiptNumber++;
+            system("CLS");
+            time_t now = time(0);
+            tm localTime;
+            localtime_s(&localTime, &now);
+            cout << "====================== TALAO DE COMPRA ======================\n"
+                 << "Data: " << localTime.tm_mday << "/" << localTime.tm_mon + 1 << "/" << localTime.tm_year + 1900 << "\n"
+                 << "Hora: "
+                 << localTime.tm_hour << ":" << localTime.tm_min << ":" << localTime.tm_sec << endl
+                 << "Fatura n: " << receiptNumber << " | Cliente n: " << list[idClientSale].getId() << endl
+                 << "-------------------------------------------------------------\n"
+                 << setw(6) << "" << setw(15) << "Produto" << setw(10) << "Qtd" << setw(15) << "Preco S/IVA" << setw(10) << "IVA" << setw(10) << "Total" << endl
+                 << "-------------------------------------------------------------\n";
+
+            for (int i = 0; i < sizeCart; i++)
+            {
+                counter++;
+                cout << setw(6) << counter << setw(15) << cart[i].getName()
+                     << setw(10) << cart[i].getQuantity()
+                     << setw(15) << fixed << setprecision(2) << cart[i].getPrice()
+                     << setw(10) << fixed << setprecision(2) << cart[i].getIva()
+                     << setw(10) << fixed << setprecision(2) << cart[i].getTotal() << endl;
+            }
+            cout << "-------------------------------------------------------------\n";
+            cout << "Total: " << subtotal;
+            cout << endl
+                 << "Valor Entregue: " << payment;
+            cout << endl
+                 << "Troco: " << (payment - subtotal) << endl;
+            cout << "-------------------------------------------------------------\n";
+            cout << "Pressione qualquer tecla para voltar ao menu.";
+            sizeCart = 0;
+            cin.get();
+            cin.ignore();
+            break;
+        }
+        else
+        {
+            cout << "Valor entregue insuficiente." << endl;
+        }
+    } while (payment != 0);
 }

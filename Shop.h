@@ -13,7 +13,7 @@
 class Shop
 {
 private:
-    Sales report[100];
+    Sales salesReport[100];
     int sizeReport = 0;
     // Criacao do Vector do Objeto Receipt
     Product cart[100];
@@ -21,7 +21,6 @@ private:
     // Criacao do Vetor do Objeto Product
     Product products[100];
     int sizeStock = 0;
-
     // Criacao do Vetor do Objeto Client
     Client list[100];
     int sizeClientList = 0;
@@ -56,6 +55,7 @@ public:
     void modifyqntCart();
     int cartSize();
     void clearCart();
+    void checkout();
 };
 
 #endif

@@ -6,6 +6,7 @@
 #include <string>
 #include <cstdlib>
 #include <sstream>
+#include <conio.h>
 
 using namespace std;
 class Product

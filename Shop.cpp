@@ -600,4 +600,22 @@ void Shop::checkout()
             cout << "Valor entregue insuficiente." << endl;
         }
     } while (payment != 0);
+    addtosalesList(receiptNumber, list[idClientSale].getId(), vector<Product>(cart, cart + sizeCart), total);
+}
+void Shop::addtosalesList(int receiptnumber, int idClient, vector<Product> cart, double total)
+{
+    // TODO: nao esta a imprimir o carrinho Bernardo.
+    int pos = sizeList % 100; // Garante que nunca passa do índice 99
+    Sales sale(receiptnumber, idClient, cart, total);
+    salesList[pos] = sale;
+    sizeList++; // Continua a incrementar para garantir o ciclo
+    cout << "Venda adicionada à lista de vendas!" << endl;
+    Sleep(3000);
+}
+void Shop::printSales()
+{
+    for (int i = 0; i < sizeList; i++)
+    {
+        cout << salesList[i].toString() << endl;
+    }
 }

@@ -57,7 +57,7 @@ void Menu::mainMenu()
             break;
         case 4:
             system("CLS");
-            // Adicionar Menu de Relatorios
+            salesMenu();
             break;
         case 5:
             cout << RED << endl
@@ -279,4 +279,63 @@ bool Menu::login()
          << "\nAs credenciais sao invalidas!\n"
          << RESET;
     return false;
+}
+
+void Menu::salesMenu()
+{
+    int option;
+    do
+    {
+        system("CLS");
+        cout << endl
+             << endl;
+        cout << "[1] Imprimir Vendas\n";
+        cout << "[2] Produto Mais Vendido\n";
+        cout << "[3] Produto Menos Vendido\n";
+        cout << "[4] Valor de Lucro do Produto mais Vendido\n";
+        cout << "[5] Cliente que mais Comprou\n";
+        cout << "[6] Stock Total\n";
+        cout << "Escolha uma opcao: ";
+        if (!(cin >> option))
+        {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Apenas pode inserir numeros. Por favor tente novamente.\n";
+            Sleep(2400);
+        }
+        switch (option)
+        {
+        case 1:
+            system("CLS");
+            // adicionar metodo
+            shop.printSales();
+            Sleep(3000);
+            break;
+        case 2:
+            system("CLS");
+            // adicionar metodo
+
+            break;
+        case 3:
+            system("CLS");
+            // adicionar metodo
+
+            break;
+        case 4:
+            system("CLS");
+            // adicionar metodo
+
+            break;
+        case 5:
+            // Inserir metodo
+            break;
+        case 6:
+            break;
+        default:
+            // Opcao invalida
+            cout << endl
+                 << "Opcao invalida. Tente novamente.\n";
+            break;
+        }
+    } while (option != 6); // Repete o menu até sair do programa
 }

@@ -48,7 +48,7 @@ public:
     void setClientPhone();
     void setClientAddress();
 
-    // Sales
+    // Buying
     void addProductInCart();
     void printCart();
     void removefromCart();
@@ -56,6 +56,10 @@ public:
     int cartSize();
     void clearCart();
     void checkout();
+
+    // Sales
+    void addtosalesList(int receiptnumber, int idClient, vector<Product> cart, double total);
+    void printSales();
 };
 
 #endif

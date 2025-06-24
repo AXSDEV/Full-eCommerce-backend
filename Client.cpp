@@ -12,6 +12,7 @@ Client::Client(string name, string phone, string address)
     this->phone = phone;
     this->address = address;
 }
+
 // Gets
 int Client::getId()
 {

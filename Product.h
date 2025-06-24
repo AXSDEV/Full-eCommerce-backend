@@ -25,6 +25,7 @@ public:
     // Construtores
     Product();
     Product(string name, int quantity, double price);
+    Product(int id, string name, int quantity, double price);
     // Gets
     int getId();
     string getName();

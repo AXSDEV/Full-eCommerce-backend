@@ -27,7 +27,7 @@ private:
 
 public:
     Shop();
-    // Produtos
+    // Products
     void saveProduct(string name, int quantity, double price);
     int searchStockProduct(int id);
     void printStock();

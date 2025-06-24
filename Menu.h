@@ -18,9 +18,6 @@ public:
     bool login();
 
 private:
-    Shop list;
-    Shop products;
-    Shop cart;
 };
 
 #endif

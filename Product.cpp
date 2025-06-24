@@ -11,9 +11,13 @@ Product::Product(string name, int quantity, double price)
     this->name = name;
     this->quantity = quantity;
     this->price = price;
-    this->sellPrice = price * 1.30;
-    this->iva = sellPrice * 0.23;
-    this->total = quantity * (sellPrice + iva);
+}
+Product::Product(int id, string name, int quantity, double price)
+{
+    this->id = id;
+    this->name = name;
+    this->quantity = quantity;
+    this->price = price;
 }
 // Gets
 int Product::getId()
@@ -34,15 +38,15 @@ double Product::getPrice()
 }
 double Product::getSellPrice()
 {
-    return sellPrice;
+    return sellPrice = price * 1.30;
 }
 double Product::getIva()
 {
-    return iva;
+    return iva = price * 0.23;
 }
 double Product::getTotal()
 {
-    return total;
+    return total = (sellPrice * 1.23) * quantity;
 }
 
 // Sets
@@ -72,6 +76,10 @@ string Product::tostring()
 
 string Product::toStringCart()
 {
+    double refreshSellPrice = getSellPrice();
+    double refreshIva = getIva();
+    double refreshTotal = getTotal();
+
     stringstream ss;
     ss << left << setw(5) << id
        << setw(20) << name

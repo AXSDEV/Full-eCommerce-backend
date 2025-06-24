@@ -22,7 +22,6 @@ Shop::Shop()
     // Lista de Clientes
     saveClient("Carlos", "911223344", "Rua do Sol, 77");
     saveClient("Sofia", "932109876", "Largo da Igreja, 5");
-
     saveClient("Diogo", "967890123", "Avenida dos Descobrimentos, 10");
     saveClient("Rita", "919876543", "Praca da Republica, 1");
     saveClient("Tiago", "934567890", "Rua das Flores, 42");
@@ -340,7 +339,6 @@ void Shop::addProductInCart()
 
             if (quantityAdd <= productInStock.getQuantity())
             {
-
                 productInStock.setQuantity(quantityAdd);
                 cart[sizeCart] = productInStock;
                 sizeCart++;

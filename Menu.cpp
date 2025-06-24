@@ -27,12 +27,11 @@ void Menu::mainMenu()
              << " |==============|\n"
              << RESET;
         cout << endl;
-        cout << "[1] Comprar\n";
+        cout << "[1] Venda\n";
         cout << "[2] Stock\n";
-        cout << "[3] Vendas\n";
-        cout << "[4] Clientes\n";
-        cout << "[5] Relatorios\n";
-        cout << "[6] Sair\n";
+        cout << "[3] Clientes\n";
+        cout << "[4] Relatorios\n";
+        cout << "[5] Sair\n";
         cout << "Escolha uma opcao: ";
         if (!(cin >> option))
         {
@@ -54,17 +53,13 @@ void Menu::mainMenu()
             break;
         case 3:
             system("CLS");
-            // Adicionar Menu de Vendas
+            clientMenu();
             break;
         case 4:
             system("CLS");
-            clientMenu();
-            break;
-        case 5:
-            system("CLS");
             // Adicionar Menu de Relatorios
             break;
-        case 6:
+        case 5:
             cout << RED << endl
                  << "A desligar o programa...\n"
                  << RESET;
@@ -74,7 +69,7 @@ void Menu::mainMenu()
                  << "Opcao invalida. Tente novamente.\n";
             break;
         }
-    } while (option != 6); // Repete o menu até sair do programa
+    } while (option != 5); // Repete o menu até sair do programa
 }
 
 void Menu::stockMenu()
@@ -236,7 +231,7 @@ void Menu::buyMenu()
                  << "Opcao invalida. Tente novamente.\n";
             break;
         }
-    } while (option != 5); // Repete o menu até sair do programa
+    } while (option != 6); // Repete o menu até sair do programa
 }
 
 void Menu::reportMenu()

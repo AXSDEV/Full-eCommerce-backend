@@ -13,8 +13,8 @@
 class Shop
 {
 private:
-    Sales salesReport[100];
-    int sizeReport = 0;
+    Sales salesList[100];
+    int sizeList = 0;
     // Criacao do Vector do Objeto Receipt
     Product cart[100];
     int sizeCart = 0;

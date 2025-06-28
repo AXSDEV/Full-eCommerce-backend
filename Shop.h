@@ -60,6 +60,11 @@ public:
     // Sales
     void addtosalesList(int receiptnumber, int idClient, vector<Product> cart, double total);
     void printSales();
+    void printTotalSales();
+
+    // Validations
+    int numberInputValidation(const string &prompt);
+    char charInputValidation(const string &prompt);
 };
 
 #endif

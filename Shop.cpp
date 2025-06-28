@@ -189,7 +189,6 @@ void Shop::addClient()
         cout << endl
              << endl;
         cout << "Nome: ";
-        cin.ignore();
         getline(cin, nameClient); // Maneira de conseguir ler tudo ate ao enter inves de ate ao espaco
         cout << "Telemovel: ";
         getline(cin, cellClient);
@@ -352,8 +351,13 @@ void Shop::addProductInCart()
                 Sleep(3000);
                 continue;
             }
-            cout << "\nDeseja adicionar mais produtos ao carrinho? (S/N): ";
-            cin >> continueToAdd;
+            continueToAdd = charInputValidation("\nDeseja adicionar mais produtos ao carrinho? (S/N): ");
+        }
+        else
+        {
+            cout << RED << "Produto nao encontrado na loja. Tente novamente." << RESET;
+            Sleep(2000);
+            continue;
         }
     }
 }
@@ -483,10 +487,10 @@ void Shop::clearCart()
 {
     if (cartSize() > 0)
     {
-        cout << "Tem certeza que deseja cancelar a comprar e esvaziar o carrinho? (S/N): ";
         char confirmation;
-        cin >> confirmation;
-        if (confirmation == 'S')
+        confirmation = charInputValidation("Tem certeza que deseja cancelar a comprar e esvaziar o carrinho? (S/N): ");
+
+        if (confirmation == 's')
         {
             for (int i = 0; i < sizeCart; i++)
             {
@@ -495,14 +499,15 @@ void Shop::clearCart()
 
             sizeCart = 0;
             cout << endl
-                 << "Compra cancelada com sucesso e carrinho vazio!";
+                 << RED << "Compra cancelada com sucesso e carrinho vazio!" << RESET;
+            Sleep(2000);
         }
     }
 }
 
 void Shop::checkout()
 {
-    char isClient = 's';
+    char isClient;
     int idClientSale;
     double payment;
     double total;
@@ -510,8 +515,8 @@ void Shop::checkout()
     int counter = 0;
     do
     {
-        cout << "Ja e nosso Cliente? (S/N) (0 para voltar atras!): ";
-        cin >> isClient;
+        isClient = charInputValidation("Ja e nosso Cliente? (S/N) (0 para voltar atras!): ");
+
         if (isClient == '0')
             break;
 
@@ -522,14 +527,16 @@ void Shop::checkout()
             cout << endl
                  << "Insira o seu ID de Cliente: ";
             cin >> idSearchClient;
+            cin.ignore(1000, '\n');
             cout << endl;
             idClientSale = searchClient(idSearchClient);
             break;
         }
-        else
+        else if (isClient == 'n')
         {
-            cout << "Insira os seguintes dados: ";
+            cout << "--- Novo Cliente ---";
             addClient();
+            idClientSale = sizeClientList - 1;
             break;
         }
     } while (isClient != '0');
@@ -550,9 +557,8 @@ void Shop::checkout()
         }
 
         cout << "\nTotal a pagar: " << fixed << setprecision(2) << subtotal << " euros\n";
-        cout << endl
-             << "Valor Entregue: (0 para cancelar): ";
-        cin >> payment;
+
+        payment = numberInputValidation("Valor Entregue: (0 para cancelar): ");
 
         if (payment == 0)
             return;
@@ -589,10 +595,7 @@ void Shop::checkout()
             cout << endl
                  << "Troco: " << (payment - subtotal) << endl;
             cout << "-------------------------------------------------------------\n";
-            cout << "Pressione qualquer tecla para voltar ao menu.";
             sizeCart = 0;
-            cin.get();
-            cin.ignore();
             break;
         }
         else
@@ -601,7 +604,11 @@ void Shop::checkout()
         }
     } while (payment != 0);
     addtosalesList(receiptNumber, list[idClientSale].getId(), vector<Product>(cart, cart + sizeCart), total);
+    cout << "Pressione ENTER para voltar ao Menu.";
+    cin.ignore(1000, '\n');
+    cin.get();
 }
+
 void Shop::addtosalesList(int receiptnumber, int idClient, vector<Product> cart, double total)
 {
     // TODO: nao esta a imprimir o carrinho Bernardo.
@@ -609,13 +616,73 @@ void Shop::addtosalesList(int receiptnumber, int idClient, vector<Product> cart,
     Sales sale(receiptnumber, idClient, cart, total);
     salesList[pos] = sale;
     sizeList++; // Continua a incrementar para garantir o ciclo
-    cout << "Venda adicionada à lista de vendas!" << endl;
-    Sleep(3000);
+    cout << "Venda adicionada a lista de vendas!" << endl;
 }
+
 void Shop::printSales()
 {
     for (int i = 0; i < sizeList; i++)
     {
         cout << salesList[i].toString() << endl;
+    }
+}
+
+void Shop::printTotalSales()
+{
+    int total = 0;
+    printStock();
+    for (int i = 0; i < sizeStock; i++)
+    {
+        total = total + products[i].getQuantity();
+    }
+    cout << endl
+         << "Stock Total = " << total << " produtos.\n";
+    cout << endl
+         << "Pressione ENTER para voltar ao menu.";
+    cin.ignore();
+    cin.get();
+}
+
+int Shop::numberInputValidation(const string &prompt)
+{
+    int value;
+    while (true)
+    {
+        cout << prompt;
+        if (cin >> value)
+        {
+            cin.ignore(1000, '\n');
+            return value;
+        }
+        else
+        {
+            cout << RED << "Por favor introduza um numero valido. Tente novamente.\n"
+                 << RESET;
+            cin.clear();
+            cin.ignore(1000, '\n');
+            Sleep(1000);
+        }
+    }
+}
+
+char Shop::charInputValidation(const string &prompt)
+{
+    char answer;
+    while (true)
+    {
+        cout << prompt;
+        cin >> answer;
+        cin.ignore(1000, '\n');
+        answer = tolower(answer);
+        if (answer == 's' || answer == 'n' || answer == '0')
+        {
+            return answer;
+        }
+        else
+        {
+            cout << RED << "Por favor introduza 'S' ou 'N'\n"
+                 << RESET;
+            Sleep(2000);
+        }
     }
 }

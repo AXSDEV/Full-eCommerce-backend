@@ -10,6 +10,7 @@ Sales::Sales(int receiptNumber, int idClient, vector<Product> cart, double total
     this->receiptNumber = receiptNumber;
     this->idClient = idClient;
     this->cart = cart;
+    this->total = total;
 }
 int Sales::getsalesId()
 {
@@ -31,10 +32,10 @@ double Sales::getsalesTotal()
 string Sales::toString()
 {
     stringstream oss;
-    oss << left << setw(10) << idSale
-        << setw(15) << receiptNumber
-        << setw(10) << idClient
-        << setw(12) << fixed << setprecision(2) << total;
+    oss << left << setw(10) << "ID Venda: " << idSale
+        << setw(15) << "ID Fatura: " << receiptNumber
+        << setw(10) << "/ID Clinete: " << idClient
+        << setw(12) << fixed << setprecision(2) << "Valor da Compra: " << total;
 
     // mostrar os produtos do carrinho:
     oss << "\nProdutos:\n";
@@ -42,7 +43,7 @@ string Sales::toString()
     {
         oss << "  - " << prod.getName()
             << " x" << prod.getQuantity()
-            << " (" << fixed << setprecision(2) << prod.getPrice() << "€ cada)\n";
+            << " (" << fixed << setprecision(2) << prod.getPrice() << "EUR cada)\n";
     }
 
     return oss.str();

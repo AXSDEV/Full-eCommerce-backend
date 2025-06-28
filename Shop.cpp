@@ -541,6 +541,7 @@ void Shop::checkout()
         }
     } while (isClient != '0');
 
+    
     printCart();
     do
     {
@@ -595,8 +596,8 @@ void Shop::checkout()
             cout << endl
                  << "Troco: " << (payment - subtotal) << endl;
             cout << "-------------------------------------------------------------\n";
+            addtosalesList(receiptNumber, list[idClientSale].getId(), vector<Product>(cart, cart + sizeCart), subtotal);
             sizeCart = 0;
-            addtosalesList(receiptNumber, list[idClientSale].getId(), vector<Product>(cart, cart + sizeCart), total);
             cout << "Pressione ENTER para voltar ao Menu.";
             cin.get();
             break;
@@ -623,6 +624,9 @@ void Shop::printSales()
     for (int i = 0; i < sizeList; i++)
     {
         cout << salesList[i].toString() << endl;
+        cout << "Pressione ENTER para voltar ao Menu.";
+        cin.get();
+        break;
     }
 }
 

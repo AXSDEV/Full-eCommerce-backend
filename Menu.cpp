@@ -21,8 +21,7 @@ void Menu::mainMenu()
     do
     {
         system("CLS");
-        cout << endl
-             << BRIGHT_YELLOW << "|=============| "
+        cout << BRIGHT_YELLOW << "|=============| "
              << "Papelaria Note & Book"
              << " |==============|\n"
              << RESET;
@@ -77,6 +76,10 @@ void Menu::stockMenu()
     do
     {
         system("CLS");
+        cout << BRIGHT_YELLOW << "|=============| "
+             << "Menu Stock"
+             << " |==============|\n"
+             << RESET;
         shop.printStock();
         cout << endl
              << endl;
@@ -126,6 +129,10 @@ void Menu::clientMenu()
     do
     {
         system("CLS");
+        cout << BRIGHT_YELLOW << "|=============| "
+             << "Menu Cliente"
+             << " |==============|\n"
+             << RESET;
         shop.printClientList();
         cout << endl
              << endl;
@@ -180,6 +187,10 @@ void Menu::buyMenu()
     {
         system("CLS");
         shop.printCart();
+        cout << BRIGHT_YELLOW << "|=============| "
+             << "Menu Venda"
+             << " |==============|\n"
+             << RESET;
         cout << endl
              << endl;
         cout << "[1] Adicionar ao Carrinho\n";
@@ -237,6 +248,10 @@ void Menu::salesMenu()
     do
     {
         system("CLS");
+        cout << BRIGHT_YELLOW << "|=============| "
+             << "Menu Relatorios"
+             << " |==============|\n"
+             << RESET;
         cout << endl
              << endl;
         cout << "[1] Imprimir Vendas\n";

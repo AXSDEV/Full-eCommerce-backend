@@ -39,7 +39,7 @@ void Shop::saveProduct(string name, int quantity, double price)
     }
     else
     {
-        cout << "Stock encontrasse cheio ! " << endl;
+        cout << RED << "Stock encontrasse cheio ! " << RESET << endl;
     }
 }
 
@@ -65,7 +65,7 @@ void Shop::addProductstock()
     }
     else
     {
-        cout << "Stock encontrasse cheio ! " << endl;
+        cout << RED << "Stock encontrasse cheio ! " << RESET << endl;
     }
 }
 
@@ -83,11 +83,6 @@ int Shop::searchStockProduct(int id)
 
 void Shop::printStock()
 {
-    cout << endl
-         << BRIGHT_YELLOW << "|================| "
-         << "STOCK"
-         << " |=================|\n"
-         << RESET;
     cout << "--------------------------------------------\n";
     cout << "| ID  | Nome           | Qtd | Preco Custo |\n";
     cout << "--------------------------------------------\n";
@@ -107,7 +102,7 @@ void Shop::printProduct(int i)
     else
     {
         cout << endl
-             << "Nao existe esse Produto";
+             << RED << "Nao existe esse Produto" << RESET;
     }
 }
 void Shop::removeProduct(int id)
@@ -129,6 +124,8 @@ void Shop::removeProductstock()
     cout << "ID do Artigo a Apagar: ";
     cin >> idRemoveProduct;
     removeProduct(idRemoveProduct);
+    cout << RED << "Artigo Removido." << RESET;
+    Sleep(2000);
 }
 void Shop::setProductPrice()
 {
@@ -142,7 +139,7 @@ void Shop::setProductPrice()
     int index = searchStockProduct(idProdAlt);
     if (index == -1)
     {
-        cout << "Produto nao encontrado!" << endl;
+        cout << RED << "Produto nao encontrado!" << RESET << endl;
         return;
     }
     cout << "Novo Preco: ";
@@ -161,7 +158,7 @@ void Shop::setProductQuantity()
     int index = searchStockProduct(idProdAlt);
     if (index == -1)
     {
-        cout << "Produto nao encontrado!" << endl;
+        cout << RED << "Produto nao encontrado!" << RESET << endl;
         return;
     }
     cout << "Nova Quantidade: ";
@@ -199,7 +196,7 @@ void Shop::addClient()
     }
     else
     {
-        cout << "A Lista encontrasse cheia ! " << endl;
+        cout << RED << "A Lista encontrasse cheia ! " << RESET << endl;
     }
 }
 
@@ -247,6 +244,8 @@ void Shop::removeFromclientlist()
     cout << "ID do Cliente a Apagar: ";
     cin >> IdRemoveclient;
     removeClient(IdRemoveclient);
+    cout << RED << "Cliente apagado da lista." << RESET;
+    Sleep(2000);
 }
 
 void Shop::setClientPhone()
@@ -261,7 +260,7 @@ void Shop::setClientPhone()
     int index = searchClient(idProdAlt);
     if (index == -1)
     {
-        cout << "Cliente nao encontrado!" << endl;
+        cout << RED << "Cliente nao encontrado!" << RESET << endl;
         return;
     }
     cout << "Novo Telefone: ";
@@ -280,7 +279,7 @@ void Shop::setClientAddress()
     int index = searchClient(idProdAlt);
     if (index == -1)
     {
-        cout << "Cliente nao encontrado!" << endl;
+        cout << RED << "Cliente nao encontrado!" << RESET << endl;
         return;
     }
     cout << "Nova Morada: ";
@@ -342,7 +341,7 @@ void Shop::addProductInCart()
                 cart[sizeCart] = productInStock;
                 sizeCart++;
                 products[index].setQuantity(products[index].getQuantity() - quantityAdd);
-                cout << "Produto adicionado ao carrinho!" << endl;
+                cout << GREEN << "Produto adicionado ao carrinho!" << RESET << endl;
             }
             else
             {
@@ -366,7 +365,8 @@ void Shop::printCart()
 {
     if (sizeCart > 0)
     {
-        cout << "=== Carrinho de Compras ===\n";
+        cout << BRIGHT_YELLOW << "=== Carrinho de Compras ===\n"
+             << RESET;
         cout << "----------------------------------------------------------------\n";
         cout << "| ID  | Nome           | Qtd | Preco Unit. |  IVA  | Subtotal   |\n";
         cout << "----------------------------------------------------------------\n";
@@ -402,11 +402,11 @@ void Shop::removefromCart()
             cart[i] = cart[i + 1];
         }
         sizeCart--;
-        cout << "Produto removido do carrinho. " << endl;
+        cout << RED << "Produto removido do carrinho. " << RESET << endl;
     }
     else
     {
-        cout << "Nao existe um produto com esse ID no carrinho. " << endl;
+        cout << RED << "Nao existe um produto com esse ID no carrinho. " << RESET << endl;
     }
 }
 void Shop::modifyqntCart()
@@ -441,7 +441,7 @@ void Shop::modifyqntCart()
         int stockIndex = searchStockProduct(idModify);
         if (stockIndex == -1)
         {
-            cout << "Produto nao encontrado no stock!" << endl;
+            cout << RED << "Produto nao encontrado no stock!" << RESET << endl;
             return; // Sai da funcao se nao encontrar no stock
         }
 
@@ -451,7 +451,7 @@ void Shop::modifyqntCart()
 
         if (newcartQnt <= 0)
         {
-            cout << "Quantidade invalida!" << endl;
+            cout << RED << "Quantidade invalida!" << RESET << endl;
             return; // Sai se a quantidade for invalida
         }
 
@@ -460,7 +460,7 @@ void Shop::modifyqntCart()
 
         if (newcartQnt > availableStock)
         {
-            cout << "Quantidade insuficiente em stock!" << endl;
+            cout << RED << "Quantidade insuficiente em stock!" << RESET << endl;
             return; // Sai se nao houver stock suficiente
         }
 
@@ -470,11 +470,11 @@ void Shop::modifyqntCart()
         // Atualiza a quantidade do produto no carrinho
         cart[index].setQuantity(newcartQnt);
 
-        cout << "Quantidade modificada com sucesso!" << endl;
+        cout << GREEN << "Quantidade modificada com sucesso!" << RESET << endl;
     }
     else // Se nao encontrou o produto no carrinho
     {
-        cout << "Produto nao encontrado no carrinho!" << endl;
+        cout << RED << "Produto nao encontrado no carrinho!" << RESET << endl;
     }
 }
 
@@ -534,7 +534,7 @@ void Shop::checkout()
         }
         else if (isClient == 'n')
         {
-            cout << "--- Novo Cliente ---";
+            cout << BRIGHT_YELLOW << "--- Novo Cliente ---" << RESET;
             addClient();
             idClientSale = sizeClientList - 1;
             break;
@@ -552,7 +552,7 @@ void Shop::checkout()
 
         if (sizeCart == 0)
         {
-            cout << "Carrinho vazio. Nao ha nada para finalizar." << endl;
+            cout << RED << "Carrinho encontra-se vazio." << RESET << endl;
             return;
         }
 
@@ -596,17 +596,16 @@ void Shop::checkout()
                  << "Troco: " << (payment - subtotal) << endl;
             cout << "-------------------------------------------------------------\n";
             sizeCart = 0;
+            addtosalesList(receiptNumber, list[idClientSale].getId(), vector<Product>(cart, cart + sizeCart), total);
+            cout << "Pressione ENTER para voltar ao Menu.";
+            cin.get();
             break;
         }
         else
         {
-            cout << "Valor entregue insuficiente." << endl;
+            cout << RED << "Valor entregue insuficiente." << RESET << endl;
         }
     } while (payment != 0);
-    addtosalesList(receiptNumber, list[idClientSale].getId(), vector<Product>(cart, cart + sizeCart), total);
-    cout << "Pressione ENTER para voltar ao Menu.";
-    cin.ignore(1000, '\n');
-    cin.get();
 }
 
 void Shop::addtosalesList(int receiptnumber, int idClient, vector<Product> cart, double total)
@@ -616,7 +615,7 @@ void Shop::addtosalesList(int receiptnumber, int idClient, vector<Product> cart,
     Sales sale(receiptnumber, idClient, cart, total);
     salesList[pos] = sale;
     sizeList++; // Continua a incrementar para garantir o ciclo
-    cout << "Venda adicionada a lista de vendas!" << endl;
+    cout << BRIGHT_YELLOW << "Venda adicionada a lista de vendas!" << RESET << endl;
 }
 
 void Shop::printSales()
@@ -636,7 +635,9 @@ void Shop::printTotalSales()
         total = total + products[i].getQuantity();
     }
     cout << endl
-         << "Stock Total = " << total << " produtos.\n";
+         << BRIGHT_YELLOW
+         << "Stock Total = " << total << " produtos.\n"
+         << RESET;
     cout << endl
          << "Pressione ENTER para voltar ao menu.";
     cin.ignore();

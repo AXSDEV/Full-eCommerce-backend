@@ -32,13 +32,15 @@ double Sales::getsalesTotal()
 string Sales::toString()
 {
     stringstream oss;
-    oss << left << setw(10) << "ID Venda: " << idSale
-        << setw(15) << "ID Fatura: " << receiptNumber
-        << setw(10) << "/ID Clinete: " << idClient
-        << setw(12) << fixed << setprecision(2) << "Valor da Compra: " << total;
+    oss << left << setw(13) << idSale
+        << setw(12) << receiptNumber
+        << setw(13) << idClient
+        << setw(12) << fixed << setprecision(2) << total;
 
     // mostrar os produtos do carrinho:
-    oss << "\nProdutos:\n";
+    oss << endl
+        << endl
+        << "Produtos:\n";
     for (auto &prod : cart)
     {
         oss << "  - " << prod.getName()

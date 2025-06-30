@@ -24,15 +24,15 @@ int Product::getId()
 {
     return id;
 }
-string Product::getName()
+string Product::getName() const
 {
     return name;
 }
-int Product::getQuantity()
+int Product::getQuantity() const
 {
     return quantity;
 }
-double Product::getPrice()
+double Product::getPrice() const
 {
     return price;
 }

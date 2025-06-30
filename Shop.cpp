@@ -26,6 +26,27 @@ Shop::Shop()
     saveClient("Rita", "919876543", "Praca da Republica, 1");
     saveClient("Tiago", "934567890", "Rua das Flores, 42");
     saveClient("Leandro", "999PfNaoincomode", "Debaixo da Ponte, 42");
+    // Lista de Vendas  6 vendas de exemplo
+    for (int i = 0; i < 6; i++)
+    {
+        std::vector<Product> carrinho;
+        // Adiciona 2 produtos diferentes ao carrinho (ajusta conforme o teu stock)
+        if (sizeStock >= 2)
+        {
+            Product p1 = products[0];
+            p1.setQuantity(1 + i);
+            Product p2 = products[1];
+            p2.setQuantity(2 + i);
+            carrinho.push_back(p1);
+            carrinho.push_back(p2);
+        }
+        int idCliente = (sizeClientList > i) ? list[i].getId() : list[0].getId();
+        double total = 0;
+        for (const auto &prod : carrinho)
+            total += prod.getPrice() * prod.getQuantity();
+
+        addtosalesList(1 + i, idCliente, carrinho, total);
+    }
 }
 
 // Products
@@ -626,10 +647,9 @@ void Shop::printSales()
     for (int i = 0; i < sizeList; i++)
     {
         cout << salesList[i].toString() << endl;
-        cout << "Pressione ENTER para voltar ao Menu.";
-        cin.get();
-        break;
     }
+    cout << "Pressione ENTER para voltar ao Menu.";
+    cin.get();
 }
 
 void Shop::printTotalSales()

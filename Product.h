@@ -28,9 +28,9 @@ public:
     Product(int id, string name, int quantity, double price);
     // Gets
     int getId();
-    string getName();
-    int getQuantity();
-    double getPrice();
+    string getName() const;
+    int getQuantity() const;
+    double getPrice() const;
     double getSellPrice();
     double getIva();
     double getTotal();

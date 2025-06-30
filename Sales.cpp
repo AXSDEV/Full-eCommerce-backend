@@ -28,8 +28,13 @@ double Sales::getsalesTotal()
 {
     return total;
 }
+vector<Product> Sales::getProducts()
+{
+    return cart;
+}
 // toString
-string Sales::toString()
+string
+Sales::toString()
 {
     stringstream oss;
     oss << left << setw(13) << idSale

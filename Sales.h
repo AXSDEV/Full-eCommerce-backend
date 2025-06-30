@@ -24,6 +24,7 @@ public:
     double getsalesTotal();
     int getsalesId();
     string toString();
+    vector<Product> getProducts();
 };
 
 #endif

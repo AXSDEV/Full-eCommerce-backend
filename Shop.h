@@ -9,7 +9,7 @@
 #define RED "\033[31m"           // Define a cor de texto para vermelho
 #define GREEN "\033[32m"         // Define a cor de texto para verde
 #define BRIGHT_YELLOW "\033[93m" // Define a cor de texto amarelo brilhante
-
+#define BRIGHT_GREEN "\e[0;92m"  // Define a cor verde brilhante
 class Shop
 {
 private:
@@ -60,7 +60,12 @@ public:
     // Sales
     void addtosalesList(int receiptnumber, int idClient, vector<Product> cart, double total);
     void printSales();
-    void printTotalSales();
+    void printTotalStock();
+    void printBestClient();
+    void printbestsellProduct();
+    void printBestSeller();
+    void printWorstProduct();
+    void printBestProductProfit();
 
     // Validations
     int numberInputValidation(const string &prompt);

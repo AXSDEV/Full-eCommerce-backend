@@ -274,26 +274,25 @@ void Menu::salesMenu()
             break;
         case 2:
             system("CLS");
-            // adicionar metodo
-
+            shop.printBestSeller();
             break;
         case 3:
             system("CLS");
-            // adicionar metodo
+            shop.printWorstProduct();
 
             break;
         case 4:
             system("CLS");
-            // adicionar metodo
+            shop.printBestProductProfit();
 
             break;
         case 5:
             system("CLS");
-            // Inserir metodo
+            shop.printBestClient();
             break;
         case 6:
             system("CLS");
-            shop.printTotalSales();
+            shop.printTotalStock();
             break;
         case 7:
             break;

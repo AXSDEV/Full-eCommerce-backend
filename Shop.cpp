@@ -27,9 +27,9 @@ Shop::Shop()
     saveClient("Tiago", "934567890", "Rua das Flores, 42");
     saveClient("Leandro", "999PfNaoincomode", "Debaixo da Ponte, 42");
     // Lista de Vendas  6 vendas de exemplo
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 4; i++)
     {
-        std::vector<Product> carrinho;
+        vector<Product> carrinho;
         // Adiciona 2 produtos diferentes ao carrinho (ajusta conforme o teu stock)
         if (sizeStock >= 2)
         {
@@ -586,6 +586,15 @@ void Shop::checkout()
 
         if (payment >= subtotal)
         {
+            srand(time(0));
+            int sorteio = rand() % 100;
+            bool compraGratis = (sorteio == 0);
+            if (compraGratis)
+            {
+                cout << BRIGHT_GREEN << "Parabens! Ganhou o Sorteio, esta compra sera gratis!";
+                payment = subtotal;
+                subtotal = 0;
+            }
             receiptNumber++;
             system("CLS");
             time_t now = time(0);
@@ -631,7 +640,6 @@ void Shop::checkout()
 
 void Shop::addtosalesList(int receiptnumber, int idClient, vector<Product> cart, double total)
 {
-    // TODO: nao esta a imprimir o carrinho Bernardo.
     int pos = sizeList % 100; // Garante que nunca passa do índice 99
     Sales sale(receiptnumber, idClient, cart, total);
     salesList[pos] = sale;
@@ -652,7 +660,7 @@ void Shop::printSales()
     cin.get();
 }
 
-void Shop::printTotalSales()
+void Shop::printTotalStock()
 {
     int total = 0;
     printStock();
@@ -667,6 +675,168 @@ void Shop::printTotalSales()
     cout << endl
          << "Pressione ENTER para voltar ao menu.";
     cin.ignore();
+    cin.get();
+}
+
+void Shop::printBestClient()
+{
+    double totalSpent = 0;        // total gasto de todas as vendas de cada cliente
+    double highestTotalSpent = 0; // total do cliente que mais gastou
+    int idClient;
+    int idBestClient; // id do cliente que mais gastou
+    for (int i = 0; i < sizeClientList; i++)
+    {
+        for (int j = 0; j < sizeList; j++)
+        {
+            if (list[i].getId() == salesList[j].getidClient())
+            {
+                totalSpent += salesList[j].getsalesTotal();
+                idClient = salesList[j].getidClient();
+            }
+            if (totalSpent > highestTotalSpent)
+            {
+                highestTotalSpent = totalSpent;
+                idBestClient = idClient;
+            }
+            totalSpent = 0;
+        }
+    }
+    cout << "-------------------------------------\n";
+    cout << "| ID Cliente | Nome   | Total Gasto |\n";
+    cout << "-------------------------------------\n";
+    cout << left << setw(2) << "" << setw(13) << idBestClient;
+    cout << setw(13) << list[idBestClient].getName();
+    cout << setw(10) << highestTotalSpent;
+    cout << endl
+         << endl
+         << "Pressione ENTER para voltar ao menu.";
+    cin.get();
+}
+
+void Shop::printBestSeller()
+{
+    int qntBestSeller = 0;
+    int idBestSeller = -1;
+
+    for (int i = 0; i < sizeStock; i++)
+    {
+        int qntSoldProduct = 0;
+        int idProduct = products[i].getId();
+
+        for (int j = 0; j < sizeList; j++)
+        {
+            // Get the vector of products sold in this sale
+            vector<Product> saleProducts = salesList[j].getProducts();
+            for (int k = 0; k < saleProducts.size(); k++)
+            {
+                if (saleProducts[k].getId() == idProduct)
+                {
+                    qntSoldProduct += saleProducts[k].getQuantity();
+                }
+            }
+        }
+
+        if (qntSoldProduct > qntBestSeller)
+        {
+            qntBestSeller = qntSoldProduct;
+            idBestSeller = idProduct;
+        }
+    }
+
+    if (idBestSeller != -1)
+    {
+        cout << "Produto mais vendido: ID " << idBestSeller << " com " << qntBestSeller << " unidades vendidas." << endl;
+    }
+    else
+    {
+        cout << "Nenhum produto vendido ainda." << endl;
+    }
+    cout << "Pressione ENTER para voltar ao menu.";
+    cin.get();
+}
+
+void Shop::printWorstProduct()
+{
+    int qntWorstSeller = 9999;
+    int idWorstSeller = -1;
+
+    for (int i = 0; i < sizeStock; i++)
+    {
+        int qntSoldProduct = 0;
+        int idProduct = products[i].getId();
+
+        for (int j = 0; j < sizeList; j++)
+        {
+            // Get the vector of products sold in this sale
+            vector<Product> saleProducts = salesList[j].getProducts();
+            for (int k = 0; k < saleProducts.size(); k++)
+            {
+                if (saleProducts[k].getId() == idProduct)
+                {
+                    qntSoldProduct += saleProducts[k].getQuantity();
+                }
+            }
+        }
+
+        if (qntSoldProduct < qntWorstSeller)
+        {
+            qntWorstSeller = qntSoldProduct;
+            idWorstSeller = idProduct;
+        }
+    }
+
+    if (idWorstSeller != -1)
+    {
+        cout << "Produto menos vendido: ID " << idWorstSeller << " com " << qntWorstSeller << " unidades vendidas." << endl;
+    }
+    else
+    {
+        cout << "Nenhum produto vendido ainda." << endl;
+    }
+    cout << "Pressione ENTER para voltar ao menu.";
+    cin.get();
+}
+
+void Shop::printBestProductProfit()
+{
+    int maxUnitsSold = 0;
+    int idBestSeller = -1;
+
+    for (int i = 0; i < sizeStock; i++)
+    {
+        int totalUnitsSold = 0;
+        int idProduct = products[i].getId();
+        for (int j = 0; j < sizeList; j++)
+        {
+            vector<Product> salesProducts = salesList[j].getProducts();
+            for (int k = 0; k < salesProducts.size(); k++)
+            {
+                if (salesProducts[k].getId() == idProduct)
+                {
+                    totalUnitsSold += salesProducts[k].getQuantity();
+                }
+            }
+        }
+        if (totalUnitsSold > maxUnitsSold)
+        {
+            maxUnitsSold = totalUnitsSold;
+            idBestSeller = idProduct;
+        }
+    }
+    if (idBestSeller != -1)
+    {
+        int idx = searchStockProduct(idBestSeller);
+        double SellPrice = products[idx].getSellPrice();
+        double costPrice = products[idx].getPrice();
+        double profit = (SellPrice - costPrice) * maxUnitsSold;
+        cout << "Produto mais vendido: " << products[idx].getName() << " (ID " << idBestSeller << ") com lucro de " << fixed << setprecision(2) << profit << " EUR." << endl;
+    }
+    else
+    {
+        cout << "Nenhum produto vendido ainda." << endl;
+    }
+    cout << endl
+         << "Pressione ENTER para voltar ao menu.";
     cin.get();
 }
 

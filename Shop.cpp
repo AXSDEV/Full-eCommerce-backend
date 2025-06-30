@@ -587,44 +587,88 @@ void Shop::checkout()
         if (payment >= subtotal)
         {
             srand(time(0));
-            int sorteio = rand() % 100;
-            bool compraGratis = (sorteio == 0);
+            int sorteio = rand() % 10;
+            bool compraGratis = (sorteio < 9);
             if (compraGratis)
             {
-                cout << BRIGHT_GREEN << "Parabens! Ganhou o Sorteio, esta compra sera gratis!";
-                payment = subtotal;
+
+                cout << BRIGHT_GREEN << "Parabens! Ganhou o Sorteio, esta compra sera gratis!" << RESET;
+                Sleep(3000);
                 subtotal = 0;
+                payment = subtotal;
             }
+            const int largura_total = 60;
             receiptNumber++;
             system("CLS");
+            cout << "\033[47m\033[30m";
             time_t now = time(0);
             tm localTime;
             localtime_s(&localTime, &now);
-            cout << "====================== TALAO DE COMPRA ======================\n"
-                 << "Data: " << localTime.tm_mday << "/" << localTime.tm_mon + 1 << "/" << localTime.tm_year + 1900 << "\n"
-                 << "Hora: "
-                 << localTime.tm_hour << ":" << localTime.tm_min << ":" << localTime.tm_sec << endl
-                 << "Fatura n: " << receiptNumber << " | Cliente n: " << list[idClientSale].getId() << endl
-                 << "-------------------------------------------------------------\n"
-                 << setw(6) << "" << setw(15) << "Produto" << setw(10) << "Qtd" << setw(15) << "Preco S/IVA" << setw(10) << "IVA" << setw(10) << "Total" << endl
-                 << "-------------------------------------------------------------\n";
+            cout << string(largura_total, ' ') << endl;
 
+            string titulo_talao = "===================== TALAO DE COMPRA ======================";
+            cout << left << setw(largura_total) << titulo_talao << endl;
+
+            // Usar stringstream para construir a linha e depois setw para preencher
+            stringstream ss_data_hora;
+            ss_data_hora << "Data: " << localTime.tm_mday << "/" << localTime.tm_mon + 1 << "/" << localTime.tm_year + 1900;
+            cout << left << setw(largura_total) << ss_data_hora.str() << endl;
+
+            stringstream ss_hora_completa;
+            ss_hora_completa << "Hora: " << setfill('0') << setw(2) << localTime.tm_hour << ":"
+                             << setw(2) << localTime.tm_min << ":" << setw(2) << localTime.tm_sec;
+            cout << left << setw(largura_total) << ss_hora_completa.str() << endl;
+            cout << setfill(' '); // Resetar setfill para espaço
+
+            stringstream ss_fatura_cliente;
+            ss_fatura_cliente << "Fatura n: " << receiptNumber << " | Cliente n: " << list[idClientSale].getId();
+            cout << left << setw(largura_total) << ss_fatura_cliente.str() << endl;
+
+            cout << left << setw(largura_total) << "------------------------------------------------------------" << endl;
+
+            // 6 + 12 + 8 + 10 + 8 + 16 = 60
+            cout << left
+                 << setw(6) << "" // Espaço inicial
+                 << setw(12) << "Produto"
+                 << setw(8) << "Qtd"
+                 << setw(10) << "Pr.S/IVA"
+                 << setw(14) << "IVA"
+                 << setw(10) << "Total" << endl; // O último setw preenche o resto da linha
+
+            cout << left << setw(largura_total) << "------------------------------------------------------------" << endl;
+
+            int counter = 0;
             for (int i = 0; i < sizeCart; i++)
             {
                 counter++;
-                cout << setw(6) << counter << setw(15) << cart[i].getName()
-                     << setw(10) << cart[i].getQuantity()
-                     << setw(15) << fixed << setprecision(2) << cart[i].getPrice()
-                     << setw(10) << fixed << setprecision(2) << cart[i].getIva()
-                     << setw(10) << fixed << setprecision(2) << cart[i].getTotal() << endl;
+                stringstream ss_item;
+                ss_item << counter
+                        << setw(12) << cart[i].getName()
+                        << setw(8) << cart[i].getQuantity()
+                        << setw(10) << fixed << setprecision(2) << cart[i].getPrice()
+                        << setw(8) << fixed << setprecision(2) << cart[i].getIva()
+                        << setw(16) << fixed << setprecision(2) << cart[i].getTotal();
+                cout << left << setw(largura_total) << ss_item.str() << endl;
             }
-            cout << "-------------------------------------------------------------\n";
-            cout << "Total: " << subtotal;
-            cout << endl
-                 << "Valor Entregue: " << payment;
-            cout << endl
-                 << "Troco: " << (payment - subtotal) << endl;
-            cout << "-------------------------------------------------------------\n";
+
+            cout << left << setw(largura_total) << "------------------------------------------------------------" << endl;
+
+            stringstream ss_total;
+            ss_total << "Total: " << fixed << setprecision(2) << subtotal;
+            cout << left << setw(largura_total) << ss_total.str() << endl;
+
+            stringstream ss_valor_entregue;
+            ss_valor_entregue << "Valor Entregue: " << fixed << setprecision(2) << payment;
+            cout << left << setw(largura_total) << ss_valor_entregue.str() << endl;
+
+            stringstream ss_troco;
+            ss_troco << "Troco: " << fixed << setprecision(2) << (payment - subtotal);
+            cout << left << setw(largura_total) << ss_troco.str() << endl;
+
+            cout << left << setw(largura_total) << "------------------------------------------------------------" << endl;
+            cout << string(largura_total, ' ') << endl;
+            // Resetar para cor padrão
+            cout << "\033[0m";
             addtosalesList(receiptNumber, list[idClientSale].getId(), vector<Product>(cart, cart + sizeCart), subtotal);
             sizeCart = 0;
             cout << "Pressione ENTER para voltar ao Menu.";

@@ -169,7 +169,7 @@ void Menu::clientMenu()
             break;
         case 5:
             system("CLS");
-
+            shop.setclientName();
             break;
         case 6:
             break;

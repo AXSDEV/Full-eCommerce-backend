@@ -47,6 +47,7 @@ public:
     void addClient();
     void setClientPhone();
     void setClientAddress();
+    void setclientName();
 
     // Buying
     void addProductInCart();
@@ -66,6 +67,7 @@ public:
     void printBestSeller();
     void printWorstProduct();
     void printBestProductProfit();
+    void salesSearch();
 
     // Validations
     int numberInputValidation(const string &prompt);

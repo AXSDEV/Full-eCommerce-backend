@@ -3,7 +3,12 @@
 int main()
 {
     Menu menu;
-    // menu.login();
+    while (menu.login() == false)
+    {
+        cout << RED
+             << "Tente novamente.\n"
+             << RESET;
+    }
     menu.mainMenu();
     return 0;
 }

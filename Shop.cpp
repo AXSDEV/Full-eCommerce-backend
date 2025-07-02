@@ -9,23 +9,23 @@
 Shop::Shop()
 {
     // Stock
-    saveProduct("Lapis", 20, 0.20);
-    saveProduct("Caneta", 20, 0.40);
-    saveProduct("Caderno", 20, 1.50);
-    saveProduct("Borracha", 15, 0.30);
-    saveProduct("Apontador", 10, 0.50);
-    saveProduct("Regua", 12, 0.80);
-    saveProduct("Marcador", 18, 1.20);
-    saveProduct("Bloco Notas", 8, 2.00);
-    saveProduct("Estojo", 5, 3.50);
-    saveProduct("Mochila", 3, 12.00);
+    saveProduct("Xadrez", 20, 9.99);
+    saveProduct("Catan", 20, 35.00);
+    saveProduct("Ticket To Ride", 20, 49.99);
+    saveProduct("Carcassonne", 15, 27.99);
+    saveProduct("Pandemic", 10, 40.00);
+    saveProduct("Monopolio", 12, 21.95);
+    saveProduct("UNO", 18, 5.99);
+    saveProduct("RISK", 8, 49.98);
+    saveProduct("Mysterium", 15, 35.00);
+    saveProduct("Concept", 3, 32.50);
     // Lista de Clientes
     saveClient("Carlos", "911223344", "Rua do Sol, 77");
     saveClient("Sofia", "932109876", "Largo da Igreja, 5");
     saveClient("Diogo", "967890123", "Avenida dos Descobrimentos, 10");
     saveClient("Rita", "919876543", "Praca da Republica, 1");
     saveClient("Tiago", "934567890", "Rua das Flores, 42");
-    saveClient("Leandro", "999PfNaoincomode", "Debaixo da Ponte, 42");
+    saveClient("Leandro", "993294921", "Debaixo da Ponte, 42");
     // Lista de Vendas  6 vendas de exemplo
     for (int i = 0; i < 4; i++)
     {
@@ -693,7 +693,6 @@ void Shop::addtosalesList(int receiptnumber, int idClient, vector<Product> cart,
     Sales sale(receiptnumber, idClient, cart, total);
     salesList[pos] = sale;
     sizeList++; // Continua a incrementar para garantir o ciclo
-    cout << BRIGHT_YELLOW << "Venda adicionada a lista de vendas!" << RESET << endl;
 }
 
 void Shop::printSales()
@@ -958,7 +957,7 @@ int Shop::numberInputValidation(const string &prompt)
     while (true)
     {
         cout << prompt;
-        if (cin >> value)
+        if (cin >> value && value > 0)
         {
             cin.ignore(1000, '\n');
             return value;

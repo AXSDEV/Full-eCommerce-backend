@@ -22,7 +22,7 @@ void Menu::mainMenu()
     {
         system("CLS");
         cout << BRIGHT_YELLOW << "|=============| "
-             << "Papelaria Note & Book"
+             << "The Game Vault"
              << " |==============|\n"
              << RESET;
         cout << endl;
@@ -76,9 +76,9 @@ void Menu::stockMenu()
     do
     {
         system("CLS");
-        cout << BRIGHT_YELLOW << "|=============| "
+        cout << BRIGHT_YELLOW << "|==============| "
              << "Menu Stock"
-             << " |==============|\n"
+             << " |===============|\n"
              << RESET;
         shop.printStock();
         cout << endl
@@ -196,8 +196,7 @@ void Menu::buyMenu()
              << "Menu Venda"
              << " |==============|\n"
              << RESET;
-        cout << endl
-             << endl;
+        cout << endl;
         cout << "[1] Adicionar ao Carrinho\n";
         cout << "[2] Remover do Carrinho\n";
         cout << "[3] Modificar Quantidade\n";
@@ -257,8 +256,7 @@ void Menu::salesMenu()
              << "Menu Relatorios"
              << " |==============|\n"
              << RESET;
-        cout << endl
-             << endl;
+        cout << endl;
         cout << "[1] Imprimir Vendas\n";
         cout << "[2] Produto Mais Vendido\n";
         cout << "[3] Produto Menos Vendido\n";
@@ -315,6 +313,7 @@ void Menu::salesMenu()
 
 bool Menu::login()
 {
+    system("CLS");
     string utilizador, senha, senhaEscondida;
     char caracter;
 
@@ -353,5 +352,6 @@ bool Menu::login()
     cout << RED << endl
          << "\nAs credenciais sao invalidas!\n"
          << RESET;
+    Sleep(3000);
     return false;
 }

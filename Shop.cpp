@@ -144,7 +144,6 @@ void Shop::removeProductstock()
     idRemoveProduct = numberInputValidation("ID do Artigo a Apagar: ");
     removeProduct(idRemoveProduct);
     cout << RED << "Artigo Removido." << RESET;
-    Sleep(2000);
 }
 void Shop::setProductPrice()
 {
@@ -259,7 +258,6 @@ void Shop::removeFromclientlist()
     IdRemoveclient = numberInputValidation("ID do Cliente a Apagar: ");
     removeClient(IdRemoveclient);
     cout << RED << "Cliente apagado da lista." << RESET;
-    Sleep(2000);
 }
 
 void Shop::setClientPhone()
@@ -470,6 +468,7 @@ void Shop::modifyqntCart()
         if (stockIndex == -1)
         {
             cout << RED << "Produto nao encontrado no stock!" << RESET << endl;
+            Sleep(2000);
             return; // Sai da funcao se nao encontrar no stock
         }
 
@@ -478,6 +477,7 @@ void Shop::modifyqntCart()
         if (newcartQnt <= 0)
         {
             cout << RED << "Quantidade invalida!" << RESET << endl;
+            Sleep(2000);
             return; // Sai se a quantidade for invalida
         }
 
@@ -487,6 +487,7 @@ void Shop::modifyqntCart()
         if (newcartQnt > availableStock)
         {
             cout << RED << "Quantidade insuficiente em stock!" << RESET << endl;
+            Sleep(2000);
             return; // Sai se nao houver stock suficiente
         }
 
@@ -526,7 +527,6 @@ void Shop::clearCart()
             sizeCart = 0;
             cout << endl
                  << RED << "Compra cancelada com sucesso e carrinho vazio!" << RESET;
-            Sleep(2000);
         }
     }
 }
@@ -578,6 +578,7 @@ void Shop::checkout()
         if (sizeCart == 0)
         {
             cout << RED << "Carrinho encontra-se vazio." << RESET << endl;
+            Sleep(2000);
             return;
         }
 
@@ -682,6 +683,7 @@ void Shop::checkout()
         else
         {
             cout << RED << "Valor entregue insuficiente." << RESET << endl;
+            Sleep(2000);
         }
     } while (payment != 0);
 }

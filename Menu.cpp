@@ -139,7 +139,7 @@ void Menu::clientMenu()
         cout << "[1] Adicionar Cliente\n";
         cout << "[2] Remover Cliente\n";
         cout << "[3] Modificar Telefone\n";
-        cout << "[4] Modificar Telefone\n";
+        cout << "[4] Modificar Morada\n";
         cout << "[5] Alterar Nome de Cliente\n";
         cout << "[6] Voltar ao Menu\n";
 
@@ -149,26 +149,27 @@ void Menu::clientMenu()
         {
         case 1:
             system("CLS");
-            // adicionar metodo
+
             shop.addClient();
             break;
         case 2:
             system("CLS");
-            // adicionar metodo
+
             shop.removeFromclientlist();
             break;
         case 3:
             system("CLS");
-            // adicionar metodo
+
             shop.setClientPhone();
             break;
         case 4:
             system("CLS");
-            // adicionar metodo
+
             shop.setClientAddress();
             break;
         case 5:
             system("CLS");
+
             break;
         case 6:
             break;

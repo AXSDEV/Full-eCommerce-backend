@@ -140,7 +140,8 @@ void Menu::clientMenu()
         cout << "[2] Remover Cliente\n";
         cout << "[3] Modificar Telefone\n";
         cout << "[4] Modificar Telefone\n";
-        cout << "[5] Voltar ao Menu\n";
+        cout << "[5] Alterar Nome de Cliente\n";
+        cout << "[6] Voltar ao Menu\n";
 
         option = shop.numberInputValidation("Escolha uma opcao: ");
 
@@ -167,6 +168,9 @@ void Menu::clientMenu()
             shop.setClientAddress();
             break;
         case 5:
+            system("CLS");
+            break;
+        case 6:
             break;
         default:
             // Opcao invalida
@@ -177,7 +181,7 @@ void Menu::clientMenu()
             Sleep(2000);
             break;
         }
-    } while (option != 5); // Repete o menu até sair do programa
+    } while (option != 6); // Repete o menu até sair do programa
 }
 
 void Menu::buyMenu()

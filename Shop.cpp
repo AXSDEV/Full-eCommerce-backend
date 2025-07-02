@@ -823,7 +823,7 @@ void Shop::printWorstProduct()
             }
         }
 
-        if (qntSoldProduct < qntWorstSeller)
+        if (qntSoldProduct > 0 && qntSoldProduct < qntWorstSeller)
         {
             qntWorstSeller = qntSoldProduct;
             idWorstSeller = idProduct;

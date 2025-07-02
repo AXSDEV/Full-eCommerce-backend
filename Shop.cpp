@@ -103,9 +103,9 @@ int Shop::searchStockProduct(int id)
 
 void Shop::printStock()
 {
-    cout << "--------------------------------------------\n";
+    cout << "============================================\n";
     cout << "| ID  | Nome           | Qtd | Preco Custo |\n";
-    cout << "--------------------------------------------\n";
+    cout << "============================================\n";
     for (int i = 0; i < sizeStock; i++)
     {
         cout << endl
@@ -211,7 +211,7 @@ void Shop::addClient()
     }
     else
     {
-        cout << RED << "A Lista encontrasse cheia ! " << RESET << endl;
+        cout << RED << "A lista encontrasse cheia ! " << RESET << endl;
     }
 }
 
@@ -396,9 +396,9 @@ void Shop::printCart()
     {
         cout << BRIGHT_YELLOW << "=== Carrinho de Compras ===\n"
              << RESET;
-        cout << "----------------------------------------------------------------\n";
+        cout << "=================================================================\n";
         cout << "| ID  | Nome           | Qtd | Preco Unit. |  IVA  | Subtotal   |\n";
-        cout << "----------------------------------------------------------------\n";
+        cout << "=================================================================\n";
         for (int i = 0; i < sizeCart; i++)
         {
 
@@ -629,8 +629,7 @@ void Shop::checkout()
             ss_fatura_cliente << "Fatura n: " << receiptNumber << " | Cliente n: " << list[idClientSale].getId();
             cout << left << setw(largura_total) << ss_fatura_cliente.str() << endl;
 
-            cout << left << setw(largura_total) << "------------------------------------------------------------" << endl;
-
+            cout << left << setw(largura_total) << "============================================================" << endl;
             // 6 + 12 + 8 + 10 + 8 + 16 = 60
             cout << left
                  << setw(6) << "" // Espaço inicial
@@ -640,7 +639,7 @@ void Shop::checkout()
                  << setw(14) << "IVA"
                  << setw(10) << "Total" << endl; // O último setw preenche o resto da linha
 
-            cout << left << setw(largura_total) << "------------------------------------------------------------" << endl;
+            cout << left << setw(largura_total) << "============================================================" << endl;
 
             int counter = 0;
             for (int i = 0; i < sizeCart; i++)
@@ -656,7 +655,7 @@ void Shop::checkout()
                 cout << left << setw(largura_total) << ss_item.str() << endl;
             }
 
-            cout << left << setw(largura_total) << "------------------------------------------------------------" << endl;
+            cout << left << setw(largura_total) << "============================================================" << endl;
 
             stringstream ss_total;
             ss_total << "Total: " << fixed << setprecision(2) << subtotal;
@@ -670,7 +669,7 @@ void Shop::checkout()
             ss_troco << "Troco: " << fixed << setprecision(2) << (payment - subtotal);
             cout << left << setw(largura_total) << ss_troco.str() << endl;
 
-            cout << left << setw(largura_total) << "------------------------------------------------------------" << endl;
+            cout << left << setw(largura_total) << "============================================================" << endl;
             cout << string(largura_total, ' ') << endl;
             // Resetar para cor padrão
             cout << "\033[0m";
@@ -702,9 +701,9 @@ void Shop::printSales()
 
     for (int i = 0; i < sizeList; i++)
     {
-        cout << "---------------------------------------------\n";
+        cout << "=============================================\n";
         cout << "| ID Venda | ID Fatura | ID Cliente | Total |\n";
-        cout << "---------------------------------------------\n";
+        cout << "=============================================\n";
         cout << salesList[i].toString() << endl;
     }
     cout << "Pressione ENTER para voltar ao Menu.";
@@ -752,9 +751,9 @@ void Shop::printBestClient()
             totalSpent = 0;
         }
     }
-    cout << "-------------------------------------\n";
+    cout << "=====================================\n";
     cout << "| ID Cliente | Nome   | Total Gasto |\n";
-    cout << "-------------------------------------\n";
+    cout << "=====================================\n";
     cout << left << setw(2) << "" << setw(13) << idBestClient;
     cout << setw(13) << list[idBestClient].getName();
     cout << setw(10) << highestTotalSpent;
@@ -941,9 +940,9 @@ void Shop::salesSearch()
     double SellPrice = products[idx].getSellPrice();
     double costPrice = products[idx].getPrice();
     double profit = (SellPrice - costPrice) * totalUnitsSold;
-    cout << "-------------------------------------\n";
+    cout << "=====================================\n";
     cout << "| ID | Nome   | Qnt Vendida | Lucro |\n";
-    cout << "-------------------------------------\n";
+    cout << "=====================================\n";
     cout << left << setw(2) << products[idx].getId() << setw(13);
     cout << products[idx].getName() << setw(13);
     cout << totalUnitsSold << setw(10);

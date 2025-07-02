@@ -693,11 +693,12 @@ void Shop::addtosalesList(int receiptnumber, int idClient, vector<Product> cart,
 
 void Shop::printSales()
 {
-    cout << "---------------------------------------------\n";
-    cout << "| ID Venda | ID Fatura | ID Cliente | Total |\n";
-    cout << "---------------------------------------------\n";
+
     for (int i = 0; i < sizeList; i++)
     {
+        cout << "---------------------------------------------\n";
+        cout << "| ID Venda | ID Fatura | ID Cliente | Total |\n";
+        cout << "---------------------------------------------\n";
         cout << salesList[i].toString() << endl;
     }
     cout << "Pressione ENTER para voltar ao Menu.";

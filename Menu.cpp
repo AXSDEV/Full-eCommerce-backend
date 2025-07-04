@@ -32,7 +32,7 @@ void Menu::mainMenu()
         cout << "[4] Relatorios\n";
         cout << "[5] Sair\n";
 
-        option = shop.numberInputValidation("Escolha uma opcao: ");
+        option = shop.intInputValidation("Escolha uma opcao: ");
 
         switch (option)
         {
@@ -89,7 +89,7 @@ void Menu::stockMenu()
         cout << "[4] Modificar Quantidade\n";
         cout << "[5] Voltar ao Menu\n";
 
-        option = shop.numberInputValidation("Escolha uma opcao: ");
+        option = shop.intInputValidation("Escolha uma opcao: ");
 
         switch (option)
         {
@@ -129,9 +129,10 @@ void Menu::clientMenu()
     do
     {
         system("CLS");
-        cout << BRIGHT_YELLOW << "|=============| "
+
+        cout << BRIGHT_YELLOW << "|=====================================| "
              << "Menu Cliente"
-             << " |==============|\n"
+             << " |=====================================|\n"
              << RESET;
         shop.printClientList();
         cout << endl
@@ -140,10 +141,10 @@ void Menu::clientMenu()
         cout << "[2] Remover Cliente\n";
         cout << "[3] Modificar Telefone\n";
         cout << "[4] Modificar Morada\n";
-        cout << "[5] Alterar Nome de Cliente\n";
+        cout << "[5] Modificar Nome\n";
         cout << "[6] Voltar ao Menu\n";
 
-        option = shop.numberInputValidation("Escolha uma opcao: ");
+        option = shop.intInputValidation("Escolha uma opcao: ");
 
         switch (option)
         {
@@ -192,9 +193,10 @@ void Menu::buyMenu()
     {
         system("CLS");
         shop.printCart();
-        cout << BRIGHT_YELLOW << "|=============| "
+        cout << BRIGHT_YELLOW << endl
+             << "|========================| "
              << "Menu Venda"
-             << " |==============|\n"
+             << " |=========================|\n"
              << RESET;
         cout << endl;
         cout << "[1] Adicionar ao Carrinho\n";
@@ -204,7 +206,7 @@ void Menu::buyMenu()
         cout << "[5] Cancelar Compra\n";
         cout << "[6] Voltar ao Menu\n";
 
-        option = shop.numberInputValidation("Escolha uma opcao: ");
+        option = shop.intInputValidation("Escolha uma opcao: ");
 
         switch (option)
         {
@@ -262,10 +264,11 @@ void Menu::salesMenu()
         cout << "[3] Produto Menos Vendido\n";
         cout << "[4] Valor de Lucro do Produto mais Vendido\n";
         cout << "[5] Cliente que mais Comprou\n";
-        cout << "[6] Stock Total\n";
-        cout << "[7] Voltar ao Menu\n";
+        cout << "[6] Estatisticas de Produto\n";
+        cout << "[7] Stock Total\n";
+        cout << "[8] Voltar ao Menu\n";
 
-        option = shop.numberInputValidation("Escolha uma opcao: ");
+        option = shop.intInputValidation("Escolha uma opcao: ");
 
         switch (option)
         {
@@ -295,9 +298,13 @@ void Menu::salesMenu()
             break;
         case 6:
             system("CLS");
-            shop.printTotalStock();
+            shop.salesSearch();
             break;
         case 7:
+            system("CLS");
+            shop.printTotalStock();
+            break;
+        case 8:
             break;
         default:
             // Opcao invalida
@@ -308,7 +315,7 @@ void Menu::salesMenu()
             Sleep(2000);
             break;
         }
-    } while (option != 7); // Repete o menu até sair do programa
+    } while (option != 8); // Repete o menu até sair do programa
 }
 
 bool Menu::login()
@@ -354,4 +361,40 @@ bool Menu::login()
          << RESET;
     Sleep(3000);
     return false;
+}
+
+void Menu::asciiArt()
+{
+    cout << BRIGHT_YELLOW << endl
+         << R"(
+_________  ___  ___  _______
+|\___   ___\\  \|\  \|\  ___ \
+\|___ \  \_\ \  \\\  \ \   __/|
+     \ \  \ \ \   __  \ \  \_|/__
+      \ \  \ \ \  \ \  \ \  \_|\ \
+       \ \__\ \ \__\ \__\ \_______\
+        \|__|  \|__|\|__|\|_______|
+                                                    
+                                                    
+                                                    
+ ________  ________  _____ ______   _______
+|\   ____\|\   __  \|\   _ \  _   \|\  ___ \
+\ \  \___|\ \  \|\  \ \  \\\__\ \  \ \   __/|
+ \ \  \  __\ \   __  \ \  \\|__| \  \ \  \_|/__
+  \ \  \|\  \ \  \ \  \ \  \    \ \  \ \  \_|\ \
+   \ \_______\ \__\ \__\ \__\    \ \__\ \_______\
+    \|_______|\|__|\|__|\|__|     \|__|\|_______|
+                                                    
+                                                    
+                                                    
+ ___      ___ ________  ___  ___  ___   _________
+|\  \    /  /|\   __  \|\  \|\  \|\  \ |\___   ___\
+\ \  \  /  / | \  \|\  \ \  \\\  \ \  \\|___ \  \_|
+ \ \  \/  / / \ \   __  \ \  \\\  \ \  \    \ \  \
+  \ \    / /   \ \  \ \  \ \  \\\  \ \  \____\ \  \
+   \ \__/ /     \ \__\ \__\ \_______\ \_______\ \__\
+    \|__|/       \|__|\|__|\|_______|\|_______|\|__|
+       )" << endl
+         << RESET;
+    Sleep(3000);
 }

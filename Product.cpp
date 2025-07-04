@@ -46,6 +46,7 @@ double Product::getIva()
 }
 double Product::getTotal()
 {
+    double sellPrice = getSellPrice();
     return total = (sellPrice * 1.23) * quantity;
 }
 
@@ -81,8 +82,8 @@ string Product::toStringCart()
     double refreshTotal = getTotal();
 
     stringstream ss;
-    ss << left << setw(5) << id
-       << setw(20) << name
+    ss << left << setw(8) << id
+       << setw(18) << name
        << setw(10) << quantity
        << setw(10) << fixed << setprecision(2) << sellPrice
        << setw(10) << iva << setw(10) << total;

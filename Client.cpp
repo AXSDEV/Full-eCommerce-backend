@@ -48,9 +48,9 @@ void Client::setAddress(string address)
 string Client::toString()
 {
     stringstream oss;
-    oss << left << setw(5) << id
-        << setw(20) << name
-        << setw(30) << phone
+    oss << left << setw(8) << id
+        << setw(15) << name
+        << setw(32) << phone
         << setw(30) << address;
     return oss.str();
 }

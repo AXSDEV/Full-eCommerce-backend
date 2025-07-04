@@ -61,6 +61,7 @@ void Shop::saveProduct(string name, int quantity, double price)
     else
     {
         cout << RED << "Stock encontrasse cheio ! " << RESET << endl;
+        Sleep(2000);
     }
 }
 
@@ -75,17 +76,16 @@ void Shop::addProductstock()
         cout << endl
              << endl;
         cout << "Nome: ";
-        cin.ignore();
         getline(cin, nameProduct); // Maneira de conseguir ler tudo ate ao enter inves de ate ao espaco
-        quantityProduct = numberInputValidation("Quantidade: ");
-        cout << "Preco: ";
-        cin >> priceProduct;
+        quantityProduct = intInputValidation("Quantidade: ");
+        priceProduct = doubleInputValidation("Preco: ");
 
         saveProduct(nameProduct, quantityProduct, priceProduct);
     }
     else
     {
         cout << RED << "Stock encontrasse cheio ! " << RESET << endl;
+        Sleep(2000);
     }
 }
 
@@ -103,15 +103,16 @@ int Shop::searchStockProduct(int id)
 
 void Shop::printStock()
 {
-    cout << "============================================\n";
-    cout << "| ID  | Nome           | Qtd | Preco Custo |\n";
-    cout << "============================================\n";
+    cout << "=============================================\n";
+    cout << "| ID  | Nome           | Qtd | Preco Custo  |\n";
+    cout << "=============================================\n";
     for (int i = 0; i < sizeStock; i++)
     {
         cout << endl
              << products[i].tostring();
     }
 }
+
 void Shop::printProduct(int i)
 {
     if (i > 0 && i < sizeStock)
@@ -123,8 +124,10 @@ void Shop::printProduct(int i)
     {
         cout << endl
              << RED << "Nao existe esse Produto" << RESET;
+        Sleep(2000);
     }
 }
+
 void Shop::removeProduct(int id)
 {
     int position = searchStockProduct(id);
@@ -134,6 +137,7 @@ void Shop::removeProduct(int id)
     }
     sizeStock--;
 }
+
 void Shop::removeProductstock()
 {
     int idRemoveProduct;
@@ -141,10 +145,12 @@ void Shop::removeProductstock()
     cout << endl
          << endl;
 
-    idRemoveProduct = numberInputValidation("ID do Artigo a Apagar: ");
+    idRemoveProduct = intInputValidation("ID do Artigo a Apagar: ");
     removeProduct(idRemoveProduct);
     cout << RED << "Artigo Removido." << RESET;
+    Sleep(2000);
 }
+
 void Shop::setProductPrice()
 {
     int idProdAlt;
@@ -152,32 +158,35 @@ void Shop::setProductPrice()
     printStock();
     cout << endl
          << endl;
-    idProdAlt = numberInputValidation("ID do Produto: ");
+    idProdAlt = intInputValidation("ID do Produto: ");
     int index = searchStockProduct(idProdAlt);
     if (index == -1)
     {
         cout << RED << "Produto nao encontrado!" << RESET << endl;
+        Sleep(2000);
         return;
     }
-    cout << "Novo Preco: ";
-    cin >> novoPreco;
-    products[index].setPrice(novoPreco);
+    novoPreco = doubleInputValidation("Novo Preco: ");
+    products[index]
+        .setPrice(novoPreco);
 }
+
 void Shop::setProductQuantity()
 {
     int idProdAlt;
-    double newQuantity;
+    int newQuantity;
     printStock();
     cout << endl
          << endl;
-    idProdAlt = numberInputValidation("ID do Produto: ");
+    idProdAlt = intInputValidation("ID do Produto: ");
     int index = searchStockProduct(idProdAlt);
     if (index == -1)
     {
         cout << RED << "Produto nao encontrado!" << RESET << endl;
+        Sleep(2000);
         return;
     }
-    newQuantity = numberInputValidation("Nova Quantidade: ");
+    newQuantity = intInputValidation("Nova Quantidade: ");
     products[index].setQuantity(newQuantity);
 }
 
@@ -191,6 +200,7 @@ void Shop::saveClient(string name, string phone, string address)
         sizeClientList++;
     }
 }
+
 void Shop::addClient()
 {
     if (sizeClientList < 100)
@@ -212,6 +222,7 @@ void Shop::addClient()
     else
     {
         cout << RED << "A lista encontrasse cheia ! " << RESET << endl;
+        Sleep(2000);
     }
 }
 
@@ -229,15 +240,18 @@ int Shop::searchClient(int id)
 
 void Shop::printClientList()
 {
-    cout << left << setw(5) << "ID"
-         << setw(20) << "Nome"
-         << setw(30) << "Telemovel"
-         << setw(30) << "Morada" << endl;
+    cout << endl;
+    cout << "============================================================================================\n";
+    cout << setw(5) << "| ID " << setw(5) << "| Nome " << setw(20) << "| Telemovel " << setw(30) << "| Morada " << setw(30) << "|";
+    cout << endl
+         << "============================================================================================\n";
     for (int i = 0; i < sizeClientList; i++)
     {
         cout << endl
              << list[i].toString();
     }
+    cout << endl
+         << "============================================================================================\n";
 }
 
 void Shop::removeClient(int id)
@@ -249,15 +263,17 @@ void Shop::removeClient(int id)
     }
     sizeClientList--;
 }
+
 void Shop::removeFromclientlist()
 {
     int IdRemoveclient;
     printClientList();
     cout << endl
          << endl;
-    IdRemoveclient = numberInputValidation("ID do Cliente a Apagar: ");
+    IdRemoveclient = intInputValidation("ID do Cliente a Apagar: ");
     removeClient(IdRemoveclient);
     cout << RED << "Cliente apagado da lista." << RESET;
+    Sleep(2000);
 }
 
 void Shop::setClientPhone()
@@ -267,17 +283,19 @@ void Shop::setClientPhone()
     printClientList();
     cout << endl
          << endl;
-    idProdAlt = numberInputValidation("ID do Cliente: ");
+    idProdAlt = intInputValidation("ID do Cliente: ");
     int index = searchClient(idProdAlt);
     if (index == -1)
     {
         cout << RED << "Cliente nao encontrado!" << RESET << endl;
+        Sleep(2000);
         return;
     }
     cout << "Novo Telefone: ";
     cin >> newPhone;
     list[index].setPhone(newPhone);
 }
+
 void Shop::setClientAddress()
 {
     int idProdAlt;
@@ -285,11 +303,12 @@ void Shop::setClientAddress()
     printClientList();
     cout << endl
          << endl;
-    idProdAlt = numberInputValidation("ID do Cliente: ");
+    idProdAlt = intInputValidation("ID do Cliente: ");
     int index = searchClient(idProdAlt);
     if (index == -1)
     {
         cout << RED << "Cliente nao encontrado!" << RESET << endl;
+        Sleep(2000);
         return;
     }
     cout << "Nova Morada: ";
@@ -297,6 +316,7 @@ void Shop::setClientAddress()
     getline(cin, newAddress);
     list[index].setAddress(newAddress);
 }
+
 void Shop::setclientName()
 {
     int idclientChange;
@@ -304,18 +324,19 @@ void Shop::setclientName()
     printClientList();
     cout << endl
          << endl;
-    idclientChange = numberInputValidation("ID do Cliente: ");
+    idclientChange = intInputValidation("ID do Cliente: ");
     int index = searchClient(idclientChange);
     if (index == -1)
     {
         cout << RED << "Cliente nao encontrado!" << RESET << endl;
+        Sleep(2000);
         return;
     }
     cout << "Novo Nome: ";
-    cin.ignore();
     getline(cin, newName);
-    list[index].setAddress(newName);
+    list[index].setName(newName);
     cout << GREEN << "Alteracoes Guardadas com Sucesso! ";
+    Sleep(2000);
 }
 // Sales
 
@@ -338,7 +359,7 @@ void Shop::addProductInCart()
         printStock();
         cout << endl
              << endl;
-        idProdAdd = numberInputValidation("Insira o ID do produto a adicionar ao carrinho. (0 para cancelar): ");
+        idProdAdd = intInputValidation("Insira o ID do produto a adicionar ao carrinho. (0 para cancelar): ");
         if (idProdAdd == 0)
         {
             cout << RED << "Operacao Cancelada." << RESET << endl;
@@ -355,7 +376,7 @@ void Shop::addProductInCart()
                  << "Produto: " << productInStock.getName() << endl
                  << "Disponivel em stock: " << productInStock.getQuantity() << "." << endl;
             cout << endl;
-            quantityAdd = numberInputValidation("Insira a quantidade que deseja adicionar ao carrinho: ");
+            quantityAdd = intInputValidation("Insira a quantidade que deseja adicionar ao carrinho: ");
 
             if (quantityAdd <= 0)
             {
@@ -371,12 +392,13 @@ void Shop::addProductInCart()
                 sizeCart++;
                 products[index].setQuantity(products[index].getQuantity() - quantityAdd);
                 cout << GREEN << "Produto adicionado ao carrinho!" << RESET << endl;
+                Sleep(2000);
             }
             else
             {
                 cout << endl
                      << RED << "Quantidade Insuficiente em stock! " << RESET << endl;
-                Sleep(3000);
+                Sleep(2000);
                 continue;
             }
             continueToAdd = charInputValidation("\nDeseja adicionar mais produtos ao carrinho? (S/N): ");
@@ -394,7 +416,7 @@ void Shop::printCart()
 {
     if (sizeCart > 0)
     {
-        cout << BRIGHT_YELLOW << "=== Carrinho de Compras ===\n"
+        cout << BRIGHT_YELLOW << "|====================| Carrinho de Compras |====================|\n"
              << RESET;
         cout << "=================================================================\n";
         cout << "| ID  | Nome           | Qtd | Preco Unit. |  IVA  | Subtotal   |\n";
@@ -411,7 +433,7 @@ void Shop::removefromCart()
 {
     printCart();
     int idRemove;
-    idRemove = numberInputValidation("Insira o ID do produto a adicionar ao carrinho: ");
+    idRemove = intInputValidation("Insira o ID do produto a adicionar ao carrinho: ");
     // Index para ir buscar a posicao para depois apagar puxando o seguinte para a posicao escolhida
     int index = -1;
     for (int i = 0; i < sizeCart; i++)
@@ -431,12 +453,15 @@ void Shop::removefromCart()
         }
         sizeCart--;
         cout << RED << "Produto removido do carrinho. " << RESET << endl;
+        Sleep(2000);
     }
     else
     {
         cout << RED << "Nao existe um produto com esse ID no carrinho. " << RESET << endl;
+        Sleep(2000);
     }
 }
+
 void Shop::modifyqntCart()
 {
     printCart(); // Mostra o carrinho atual ao utilizador
@@ -446,7 +471,7 @@ void Shop::modifyqntCart()
 
     cout << endl
          << endl;
-    idModify = numberInputValidation("ID do Produto a modificar a quantidade: ");
+    idModify = intInputValidation("ID do Produto a modificar a quantidade: ");
     int index = -1; // Variavel para guardar o indice do produto no carrinho
 
     // Procura o produto no carrinho pelo ID
@@ -473,7 +498,7 @@ void Shop::modifyqntCart()
         }
 
         cout << "Quantidade atual no carrinho: " << oldQnt << endl;
-        newcartQnt = numberInputValidation("Nova quantidade: ");
+        newcartQnt = intInputValidation("Nova quantidade: ");
         if (newcartQnt <= 0)
         {
             cout << RED << "Quantidade invalida!" << RESET << endl;
@@ -498,10 +523,12 @@ void Shop::modifyqntCart()
         cart[index].setQuantity(newcartQnt);
 
         cout << GREEN << "Quantidade modificada com sucesso!" << RESET << endl;
+        Sleep(2000);
     }
     else // Se nao encontrou o produto no carrinho
     {
         cout << RED << "Produto nao encontrado no carrinho!" << RESET << endl;
+        Sleep(2000);
     }
 }
 
@@ -527,6 +554,7 @@ void Shop::clearCart()
             sizeCart = 0;
             cout << endl
                  << RED << "Compra cancelada com sucesso e carrinho vazio!" << RESET;
+            Sleep(2000);
         }
     }
 }
@@ -551,7 +579,7 @@ void Shop::checkout()
             int idSearchClient;
             printClientList();
             cout << endl;
-            idSearchClient = numberInputValidation("Insira o seu ID de Cliente: ");
+            idSearchClient = intInputValidation("Insira o seu ID de Cliente: ");
             cin.ignore(1000, '\n');
             cout << endl;
             idClientSale = searchClient(idSearchClient);
@@ -584,7 +612,7 @@ void Shop::checkout()
 
         cout << "\nTotal a pagar: " << fixed << setprecision(2) << subtotal << " euros\n";
 
-        payment = numberInputValidation("Valor Entregue: (0 para cancelar): ");
+        payment = intInputValidation("Valor Entregue: (0 para cancelar): ");
 
         if (payment == 0)
             return;
@@ -704,7 +732,10 @@ void Shop::printSales()
         cout << "| ID Venda | ID Fatura | ID Cliente | Total |\n";
         cout << "=============================================\n";
         cout << salesList[i].toString() << endl;
+        cout << "Nome do Cliente: " << list[i].getName() << endl
+             << endl;
     }
+    cout << endl;
     cout << "Pressione ENTER para voltar ao Menu.";
     cin.get();
 }
@@ -712,18 +743,22 @@ void Shop::printSales()
 void Shop::printTotalStock()
 {
     int total = 0;
+    cout << "============================================\n";
+    cout << "|               Stock Total                |\n";
+    cout << "============================================\n";
+    cout << endl;
     printStock();
     for (int i = 0; i < sizeStock; i++)
     {
         total = total + products[i].getQuantity();
     }
     cout << endl
+         << endl
          << BRIGHT_YELLOW
          << "Stock Total = " << total << " produtos.\n"
          << RESET;
     cout << endl
          << "Pressione ENTER para voltar ao menu.";
-    cin.ignore();
     cin.get();
 }
 
@@ -750,9 +785,13 @@ void Shop::printBestClient()
             totalSpent = 0;
         }
     }
-    cout << "=====================================\n";
-    cout << "| ID Cliente | Nome   | Total Gasto |\n";
-    cout << "=====================================\n";
+    cout << "======================================\n";
+    cout << "|           Melhor Cliente           |\n";
+    cout << "======================================\n";
+    cout << endl;
+    cout << "======================================\n";
+    cout << "| ID Cliente | Nome    | Total Gasto |\n";
+    cout << "======================================\n";
     cout << left << setw(2) << "" << setw(13) << idBestClient;
     cout << setw(13) << list[idBestClient].getName();
     cout << setw(10) << highestTotalSpent;
@@ -766,9 +805,11 @@ void Shop::printBestSeller()
 {
     int qntBestSeller = 0;
     int idBestSeller = -1;
+    string nameBestSeller;
 
     for (int i = 0; i < sizeStock; i++)
     {
+        string nameProduct;
         int qntSoldProduct = 0;
         int idProduct = products[i].getId();
 
@@ -781,6 +822,7 @@ void Shop::printBestSeller()
                 if (saleProducts[k].getId() == idProduct)
                 {
                     qntSoldProduct += saleProducts[k].getQuantity();
+                    nameProduct = saleProducts[k].getName();
                 }
             }
         }
@@ -789,17 +831,26 @@ void Shop::printBestSeller()
         {
             qntBestSeller = qntSoldProduct;
             idBestSeller = idProduct;
+            nameBestSeller = nameProduct;
         }
     }
 
     if (idBestSeller != -1)
     {
-        cout << "Produto mais vendido: ID " << idBestSeller << " com " << qntBestSeller << " unidades vendidas." << endl;
+        cout << "====================================\n";
+        cout << "|       Produto Mais Vendido       |\n";
+        cout << "====================================\n";
+        cout << endl;
+        cout << "====================================\n";
+        cout << "| ID | Produto mais vendido | Qnt  |\n";
+        cout << "====================================\n";
+        cout << left << setw(10) << idBestSeller << setw(20) << nameBestSeller << setw(10) << qntBestSeller << endl;
     }
     else
     {
         cout << "Nenhum produto vendido ainda." << endl;
     }
+    cout << endl;
     cout << "Pressione ENTER para voltar ao menu.";
     cin.get();
 }
@@ -808,10 +859,12 @@ void Shop::printWorstProduct()
 {
     int qntWorstSeller = 9999;
     int idWorstSeller = -1;
+    string nameWorstProduct;
 
     for (int i = 0; i < sizeStock; i++)
     {
         int qntSoldProduct = 0;
+        string nameProduct;
         int idProduct = products[i].getId();
 
         for (int j = 0; j < sizeList; j++)
@@ -823,6 +876,7 @@ void Shop::printWorstProduct()
                 if (saleProducts[k].getId() == idProduct)
                 {
                     qntSoldProduct += saleProducts[k].getQuantity();
+                    nameProduct = saleProducts[k].getName();
                 }
             }
         }
@@ -831,17 +885,26 @@ void Shop::printWorstProduct()
         {
             qntWorstSeller = qntSoldProduct;
             idWorstSeller = idProduct;
+            nameWorstProduct = nameProduct;
         }
     }
 
     if (idWorstSeller != -1)
     {
-        cout << "Produto menos vendido: ID " << idWorstSeller << " com " << qntWorstSeller << " unidades vendidas." << endl;
+        cout << "=====================================\n";
+        cout << "|       Produto Menos Vendido       |\n";
+        cout << "=====================================\n";
+        cout << endl;
+        cout << "=====================================\n";
+        cout << "| ID | Produto menos vendido | Qnt  |\n";
+        cout << "=====================================\n";
+        cout << left << setw(10) << idWorstSeller << setw(20) << nameWorstProduct << setw(10) << qntWorstSeller << endl;
     }
     else
     {
         cout << "Nenhum produto vendido ainda." << endl;
     }
+    cout << endl;
     cout << "Pressione ENTER para voltar ao menu.";
     cin.get();
 }
@@ -878,11 +941,19 @@ void Shop::printBestProductProfit()
         double SellPrice = products[idx].getSellPrice();
         double costPrice = products[idx].getPrice();
         double profit = (SellPrice - costPrice) * maxUnitsSold;
-        cout << "Produto mais vendido: " << products[idx].getName() << " (ID " << idBestSeller << ") com lucro de " << fixed << setprecision(2) << profit << " EUR." << endl;
+        cout << "======================================\n";
+        cout << "|       Produto Com Mais Lucro       |\n";
+        cout << "======================================\n";
+        cout << endl;
+        cout << "======================================\n";
+        cout << "| ID | Produto mais vendido | Lucro  |\n";
+        cout << "======================================\n";
+        cout << left << setw(10) << idBestSeller << setw(20) << products[idx].getName() << setw(10) << fixed << setprecision(2) << profit << endl;
     }
     else
     {
         cout << "Nenhum produto vendido ainda." << endl;
+        Sleep(2000);
     }
     cout << endl
          << "Pressione ENTER para voltar ao menu.";
@@ -891,73 +962,56 @@ void Shop::printBestProductProfit()
 
 void Shop::salesSearch()
 {
-    int id;
-    double sellPrice;
-    int counter = 0;
-    string nameProd;
-    int totalUnitsSold = 0;
-    cout << "Insira o nome do produto para ver as suas estatisticas: " << endl;
-    getline(cin, nameProd);
-    for (char &c : nameProd)
-    {
-        c = tolower(static_cast<unsigned char>(c));
-    }
+    string searchName;
+    cout << "Digite o nome do produto para pesquisar: ";
+    getline(cin, searchName);
+    cout << endl;
+
+    bool found = false;
+    cout << "==============================================\n";
+    cout << "| Venda | Cliente | Produto | Qtd | Total   |\n";
+    cout << "==============================================\n";
 
     for (int i = 0; i < sizeList; i++)
     {
-        vector<Product> salesSearchProducts = salesList[i].getProducts();
-
-        for (int j = 0; j < salesSearchProducts.size(); j++)
+        vector<Product> salesProducts = salesList[i].getProducts();
+        for (int j = 0; j < salesProducts.size(); j++)
         {
-            string existingName = (salesSearchProducts[j].getName());
-            for (char &c : existingName)
+            // Comparacao Case-Sensitive
+            string prodName = salesProducts[j].getName();
+            if (toLower(prodName).find(toLower(searchName)) != string::npos)
             {
-                c = tolower(static_cast<unsigned char>(c));
-            }
-
-            if (salesSearchProducts[i].getName() == nameProd)
-            {
-                counter++;
-                totalUnitsSold += salesSearchProducts[j].getQuantity();
-                id = i + 1;
-            }
-            else
-            {
-                cout << "Nao existem vendas do produto: " << nameProd;
+                found = true;
+                int idClient = salesList[i].getidClient();
+                int idxClient = searchClient(idClient);
+                string nameClient = list[idxClient].getName();
+                cout << left
+                     << setw(7) << salesList[i].getreceiptNumber()
+                     << setw(10) << nameClient
+                     << setw(10) << salesProducts[j].getName()
+                     << setw(6) << salesProducts[j].getQuantity()
+                     << setw(10) << salesProducts[j].getTotal()
+                     << endl;
             }
         }
     }
-    for (auto &product : products)
+    if (!found)
     {
-        if (product.getName() == nameProd)
-        {
-            cout << product.tostring();
-            break;
-        }
+        cout << RED << "Nenhum produto encontrado com esse nome nas vendas.\n"
+             << RESET;
     }
-    int idx = searchStockProduct(id);
-    double SellPrice = products[idx].getSellPrice();
-    double costPrice = products[idx].getPrice();
-    double profit = (SellPrice - costPrice) * totalUnitsSold;
-    cout << "=====================================\n";
-    cout << "| ID | Nome   | Qnt Vendida | Lucro |\n";
-    cout << "=====================================\n";
-    cout << left << setw(2) << products[idx].getId() << setw(13);
-    cout << products[idx].getName() << setw(13);
-    cout << totalUnitsSold << setw(10);
-    cout << profit << setw(10) << endl
-         << endl
-         << "Pressione ENTER para voltar ao menu.";
+    cout << "==============================================\n";
+    cout << "Pressione ENTER para voltar ao menu.";
     cin.get();
 }
 
-int Shop::numberInputValidation(const string &prompt)
+int Shop::intInputValidation(const string &prompt)
 {
     int value;
     while (true)
     {
         cout << prompt;
-        if (cin >> value && value > 0)
+        if (cin >> value && value >= 0)
         {
             cin.ignore(1000, '\n');
             return value;
@@ -993,4 +1047,32 @@ char Shop::charInputValidation(const string &prompt)
             Sleep(2000);
         }
     }
+}
+
+int Shop::doubleInputValidation(const string &prompt)
+{
+    double value;
+    while (true)
+    {
+        cout << prompt;
+        if (cin >> value && value >= 0)
+        {
+            cin.ignore(1000, '\n');
+            return value;
+        }
+        else
+        {
+            cout << RED << "Por favor introduza um numero valido. Tente novamente.\n"
+                 << RESET;
+            cin.clear();
+            cin.ignore(1000, '\n');
+            Sleep(1000);
+        }
+    }
+}
+
+string Shop::toLower(string name)
+{
+    transform(name.begin(), name.end(), name.begin(), ::tolower); // transforma em lowercase
+    return name;                                                  // envia o nome em lowercase para variavel
 }

@@ -9,6 +9,7 @@ int main()
              << "Tente novamente.\n"
              << RESET;
     }
+    menu.asciiArt();
     menu.mainMenu();
     return 0;
 }

@@ -70,8 +70,10 @@ public:
     void salesSearch();
 
     // Validations
-    int numberInputValidation(const string &prompt);
+    int intInputValidation(const string &prompt);
     char charInputValidation(const string &prompt);
+    int doubleInputValidation(const string &prompt);
+    string toLower(string name);
 };
 
 #endif

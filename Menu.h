@@ -16,6 +16,7 @@ public:
     void buyMenu();
     void reportMenu();
     bool login();
+    void asciiArt();
 
 private:
 };

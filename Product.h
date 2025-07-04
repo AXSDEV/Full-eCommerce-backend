@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <conio.h>
+#include <algorithm>
 
 using namespace std;
 class Product

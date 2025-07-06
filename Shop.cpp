@@ -26,7 +26,7 @@ Shop::Shop()
     saveClient("Rita", "919876543", "Praca da Republica, 1");
     saveClient("Tiago", "934567890", "Rua das Flores, 42");
     saveClient("Leandro", "993294921", "Debaixo da Ponte, 42");
-    // Lista de Vendas  6 vendas de exemplo
+    // Lista de Vendas  4 vendas de exemplo
     for (int i = 0; i < 4; i++)
     {
         vector<Product> carrinho;

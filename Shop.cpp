@@ -986,7 +986,7 @@ void Shop::salesSearch()
                 int idxClient = searchClient(idClient);
                 string nameClient = list[idxClient].getName();
                 cout << left
-                     << setw(7) << salesList[i].getreceiptNumber()
+                     << setw(10) << salesList[i].getreceiptNumber()
                      << setw(10) << nameClient
                      << setw(10) << salesProducts[j].getName()
                      << setw(6) << salesProducts[j].getQuantity()

@@ -581,7 +581,6 @@ void Shop::checkout()
             printClientList();
             cout << endl;
             idSearchClient = intInputValidation("Insira o seu ID de Cliente: ");
-            cin.ignore(1000, '\n');
             cout << endl;
             idClientSale = searchClient(idSearchClient);
             break;
@@ -726,8 +725,8 @@ void Shop::addtosalesList(int receiptnumber, int idClient, vector<Product> cart,
 
 void Shop::printSales()
 {
-
-    for (int i = 0; i < sizeList; i++)
+    int maxSales = (sizeList < 100) ? sizeList : 100;
+    for (int i = 0; i < maxSales; i++)
     {
         cout << "=============================================\n";
         cout << "| ID Venda | ID Fatura | ID Cliente | Total |\n";

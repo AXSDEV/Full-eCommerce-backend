@@ -274,9 +274,7 @@ void Menu::salesMenu()
         {
         case 1:
             system("CLS");
-            // adicionar metodo
             shop.printSales();
-            Sleep(3000);
             break;
         case 2:
             system("CLS");

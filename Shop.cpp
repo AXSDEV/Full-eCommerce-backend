@@ -9,16 +9,16 @@
 Shop::Shop()
 {
     // Stock
-    saveProduct("Xadrez", 20, 9.99);
-    saveProduct("Catan", 20, 35.00);
-    saveProduct("Ticket To Ride", 20, 49.99);
-    saveProduct("Carcassonne", 15, 27.99);
-    saveProduct("Pandemic", 10, 40.00);
-    saveProduct("Monopolio", 12, 21.95);
-    saveProduct("UNO", 18, 5.99);
-    saveProduct("RISK", 8, 49.98);
-    saveProduct("Mysterium", 15, 35.00);
-    saveProduct("Concept", 3, 32.50);
+    saveProduct("Xadrez", 2000, 9.99);
+    saveProduct("Catan", 2000, 35.00);
+    saveProduct("Ticket To Ride", 2000, 49.99);
+    saveProduct("Carcassonne", 1500, 27.99);
+    saveProduct("Pandemic", 1000, 40.00);
+    saveProduct("Monopolio", 1200, 21.95);
+    saveProduct("UNO", 1800, 5.99);
+    saveProduct("RISK", 800, 49.98);
+    saveProduct("Mysterium", 1500, 35.00);
+    saveProduct("Concept", 3000, 32.50);
     // Lista de Clientes
     saveClient("Carlos", "911223344", "Rua do Sol, 77");
     saveClient("Sofia", "932109876", "Largo da Igreja, 5");
@@ -27,20 +27,21 @@ Shop::Shop()
     saveClient("Tiago", "934567890", "Rua das Flores, 42");
     saveClient("Leandro", "993294921", "Debaixo da Ponte, 42");
     // Lista de Vendas  4 vendas de exemplo
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 100; i++)
     {
         vector<Product> carrinho;
         // Adiciona 2 produtos diferentes ao carrinho (ajusta conforme o teu stock)
-        if (sizeStock >= 2)
+        int numProdutosCarrinho = 1 + rand() % 7; // Entre 1 e 7 produtos por venda
+
+        for (int j = 0; j < numProdutosCarrinho; j++)
         {
-            Product p1 = products[0];
-            p1.setQuantity(1 + i);
-            Product p2 = products[1];
-            p2.setQuantity(2 + i);
-            carrinho.push_back(p1);
-            carrinho.push_back(p2);
+            int idxProduto = rand() % sizeStock; // Índice aleatório do produto
+            Product p = products[idxProduto];
+            int qnt = 1 + rand() % 5; // Quantidade aleatória entre 1 e 5
+            p.setQuantity(qnt);
+            carrinho.push_back(p);
         }
-        int idCliente = (sizeClientList > i) ? list[i].getId() : list[0].getId();
+        int idCliente = list[i % sizeClientList].getId();
         double total = 0;
         for (const auto &prod : carrinho)
             total += prod.getPrice() * prod.getQuantity();
@@ -732,8 +733,10 @@ void Shop::printSales()
         cout << "| ID Venda | ID Fatura | ID Cliente | Total |\n";
         cout << "=============================================\n";
         cout << salesList[i].toString() << endl;
-        cout << "Nome do Cliente: " << list[i].getName() << endl
-             << endl;
+        int idxCliente = searchClient(salesList[i].getidClient());
+        if (idxCliente != -1)
+            cout << "Nome do Cliente: " << list[idxCliente].getName() << endl
+                 << endl;
     }
     cout << endl;
     cout << "Pressione ENTER para voltar ao Menu.";
@@ -785,6 +788,7 @@ void Shop::printBestClient()
             totalSpent = 0;
         }
     }
+    int idxCliente = searchClient(idBestClient);
     cout << "======================================\n";
     cout << "|           Melhor Cliente           |\n";
     cout << "======================================\n";
@@ -793,7 +797,7 @@ void Shop::printBestClient()
     cout << "| ID Cliente | Nome    | Total Gasto |\n";
     cout << "======================================\n";
     cout << left << setw(2) << "" << setw(13) << idBestClient;
-    cout << setw(13) << list[idBestClient].getName();
+    cout << setw(13) << list[idxCliente].getName();
     cout << setw(10) << highestTotalSpent;
     cout << endl
          << endl

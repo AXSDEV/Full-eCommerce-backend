@@ -27,7 +27,7 @@ Shop::Shop()
     saveClient("Tiago", "934567890", "Rua das Flores, 42");
     saveClient("Leandro", "993294921", "Debaixo da Ponte, 42");
     // Lista de Vendas  4 vendas de exemplo
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 100; i++)
     {
         vector<Product> carrinho;
         // Adiciona 2 produtos diferentes ao carrinho (ajusta conforme o teu stock)
@@ -642,7 +642,6 @@ void Shop::checkout()
             string titulo_talao = "===================== TALAO DE COMPRA ======================";
             cout << left << setw(largura_total) << titulo_talao << endl;
 
-            // Usar stringstream para construir a linha e depois setw para preencher
             stringstream ss_data_hora;
             ss_data_hora << "Data: " << localTime.tm_mday << "/" << localTime.tm_mon + 1 << "/" << localTime.tm_year + 1900;
             cout << left << setw(largura_total) << ss_data_hora.str() << endl;
@@ -651,7 +650,7 @@ void Shop::checkout()
             ss_hora_completa << "Hora: " << setfill('0') << setw(2) << localTime.tm_hour << ":"
                              << setw(2) << localTime.tm_min << ":" << setw(2) << localTime.tm_sec;
             cout << left << setw(largura_total) << ss_hora_completa.str() << endl;
-            cout << setfill(' '); // Resetar setfill para espaço
+            cout << setfill(' ');
 
             stringstream ss_fatura_cliente;
             ss_fatura_cliente << "Fatura n: " << receiptNumber << " | Cliente n: " << list[idClientSale].getId();
@@ -660,12 +659,12 @@ void Shop::checkout()
             cout << left << setw(largura_total) << "============================================================" << endl;
             // 6 + 12 + 8 + 10 + 8 + 16 = 60
             cout << left
-                 << setw(6) << "" // Espaço inicial
+                 << setw(6) << ""
                  << setw(12) << "Produto"
                  << setw(8) << "Qtd"
                  << setw(10) << "Pr.S/IVA"
                  << setw(14) << "IVA"
-                 << setw(10) << "Total" << endl; // O último setw preenche o resto da linha
+                 << setw(10) << "Total" << endl;
 
             cout << left << setw(largura_total) << "============================================================" << endl;
 
@@ -699,8 +698,7 @@ void Shop::checkout()
 
             cout << left << setw(largura_total) << "============================================================" << endl;
             cout << string(largura_total, ' ') << endl;
-            // Resetar para cor padrão
-            cout << "\033[0m";
+            cout << "\033[0m"; // Voltar com cor padrão
             addtosalesList(receiptNumber, list[idClientSale].getId(), vector<Product>(cart, cart + sizeCart), subtotal);
             sizeCart = 0;
             cout << "Pressione ENTER para voltar ao Menu.";
@@ -717,7 +715,7 @@ void Shop::checkout()
 
 void Shop::addtosalesList(int receiptnumber, int idClient, vector<Product> cart, double total)
 {
-    int pos = sizeList % 100; // Garante que nunca passa do índice 99
+    int pos = sizeList % 100; // Garante que nunca passa do índice 100
     Sales sale(receiptnumber, idClient, cart, total);
     salesList[pos] = sale;
     sizeList++; // Continua a incrementar para garantir o ciclo

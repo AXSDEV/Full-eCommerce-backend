@@ -313,7 +313,6 @@ void Shop::setClientAddress()
         return;
     }
     cout << "Nova Morada: ";
-    cin.ignore();
     getline(cin, newAddress);
     list[index].setAddress(newAddress);
 }
@@ -336,7 +335,7 @@ void Shop::setclientName()
     cout << "Novo Nome: ";
     getline(cin, newName);
     list[index].setName(newName);
-    cout << GREEN << "Alteracoes Guardadas com Sucesso! ";
+    cout << GREEN << "Alteracoes Guardadas com Sucesso! " << RESET;
     Sleep(2000);
 }
 // Sales

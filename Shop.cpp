@@ -27,7 +27,7 @@ Shop::Shop()
     saveClient("Tiago", "934567890", "Rua das Flores, 42");
     saveClient("Leandro", "993294921", "Debaixo da Ponte, 42");
     // Lista de Vendas  4 vendas de exemplo
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 8; i++)
     {
         vector<Product> carrinho;
         // Adiciona 2 produtos diferentes ao carrinho (ajusta conforme o teu stock)
@@ -566,7 +566,7 @@ void Shop::checkout()
     int idClientSale;
     double payment;
     double total;
-    int receiptNumber = 0;
+    int receiptNumber = 8;
     int counter = 0;
     do
     {

@@ -6,12 +6,10 @@ Project for a small-business in C++. School project.
 
 ✅ To-Do List
 Done <p>
-🛠 Extra Tasks<p>
-1.Search Bar;<p>
 
 ---
 
-AXS - I-m working on Cart;
+AXS - Done;
 
 <p>
-BernardoSilva-Coder - I'm working on Cart;
+BernardoSilva-Coder - Done;
